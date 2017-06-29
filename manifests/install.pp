@@ -41,7 +41,6 @@ class beegfs::install(
 
   package { 'beegfs-utils':
     ensure  => $package_ensure,
-    require => [Anchor['beegfs::apt_repo'], Exec['apt_update']], # TODO: this will work only on Debian
   }
 
 }
