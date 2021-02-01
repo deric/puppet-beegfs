@@ -25,6 +25,8 @@ class beegfs::client (
   Boolean                 $tune_refresh_on_get_attr = false,
   Boolean                 $enable_quota             = $beegfs::enable_quota,
   Boolean                 $enable_acl               = $beegfs::enable_acl,
+  Boolean                 $enable_rdma              = $beegfs::enable_rdma,
+  Boolean                 $remote_fsync             = true,
 ) inherits beegfs {
 
   anchor { 'beegfs::kernel_dev' : }

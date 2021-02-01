@@ -23,6 +23,7 @@ class beegfs::meta (
   Stdlib::Port            $meta_udp_port          = $beegfs::meta_udp_port,
   Stdlib::Port            $mgmtd_tcp_port         = $beegfs::mgmtd_tcp_port,
   Stdlib::Port            $mgmtd_udp_port         = $beegfs::mgmtd_udp_port,
+  Boolean                 $enable_rdma            = $beegfs::enable_rdma,
 
 ) inherits beegfs {
 

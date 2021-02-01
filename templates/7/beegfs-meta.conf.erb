@@ -39,7 +39,7 @@ connPortShift                = 0
 
 connNetFilterFile            = <% if @networks %><%= @networks_file %><% end %>
 
-connUseRDMA                  = true
+connUseRDMA                  = <%= @enable_rdma %>
 connRDMATypeOfService        = 0
 connTcpOnlyFilterFile        =
 

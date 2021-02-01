@@ -20,6 +20,7 @@ class beegfs::storage (
   Stdlib::Port                $mgmtd_tcp_port       = 8008,
   Stdlib::Port                $mgmtd_udp_port       = 8008,
   Boolean                     $enable_quota         = $beegfs::enable_quota,
+  Boolean                     $enable_rdma          = $beegfs::enable_rdma,
 ) inherits beegfs {
 
   $_release_major = beegfs::release_to_major($beegfs::release)
