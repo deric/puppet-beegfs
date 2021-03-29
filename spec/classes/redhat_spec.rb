@@ -8,14 +8,14 @@ describe 'beegfs::client' do
     {
       # still old fact is needed due to this
       # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-      :osfamily => 'RedHat',
-      :os => {
-        :family => 'RedHat',
-        :name => 'RedHat',
-        :architecture => 'amd64',
-        :release => { :major => '7', :minor => '0', :full => '7.0' },
+      osfamily: 'RedHat',
+      os: {
+        family: 'RedHat',
+        name: 'RedHat',
+        architecture: 'amd64',
+        release: { major: '7', minor: '0', full: '7.0' },
       },
-      :puppetversion => Puppet.version,
+      puppetversion: Puppet.version,
     }
   end
 
@@ -26,8 +26,8 @@ describe 'beegfs::client' do
     let(:release) { '7.1' }
     let(:params) do
       {
-        :user  => user,
-        :group => group,
+        user: user,
+        group: group,
       }
     end
 
@@ -40,32 +40,26 @@ describe 'beegfs::client' do
     it {
       is_expected.to contain_yumrepo('beegfs_rhel7').with(
         'enabled' => '1',
-        'baseurl' => "https://www.beegfs.io/release/beegfs_7_1/dists/rhel7"
+        'baseurl' => 'https://www.beegfs.io/release/beegfs_7_1/dists/rhel7',
       )
     }
 
     it do
       is_expected.to contain_package('beegfs-client')
         .with(
-          'ensure' => 'present'
+          'ensure' => 'present',
         )
     end
     it do
       is_expected.to contain_package('kernel-devel')
         .with(
-          'ensure' => 'present'
+          'ensure' => 'present',
         )
     end
     it do
       is_expected.to contain_package('beegfs-helperd')
         .with(
-          'ensure' => 'present'
-        )
-    end
-    it do
-      is_expected.to contain_package('beegfs-client')
-        .with(
-          'ensure' => 'present'
+          'ensure' => 'present',
         )
     end
   end
@@ -74,8 +68,8 @@ describe 'beegfs::client' do
     let(:release) { '7.2' }
     let(:params) do
       {
-        :user  => user,
-        :group => group,
+        user: user,
+        group: group,
       }
     end
 
@@ -88,32 +82,26 @@ describe 'beegfs::client' do
     it {
       is_expected.to contain_yumrepo('beegfs_rhel7').with(
         'enabled' => '1',
-        'baseurl' => "https://www.beegfs.io/release/beegfs_7.2/dists/rhel7"
+        'baseurl' => 'https://www.beegfs.io/release/beegfs_7.2/dists/rhel7',
       )
     }
 
     it do
       is_expected.to contain_package('beegfs-client')
         .with(
-          'ensure' => 'present'
+          'ensure' => 'present',
         )
     end
     it do
       is_expected.to contain_package('kernel-devel')
         .with(
-          'ensure' => 'present'
+          'ensure' => 'present',
         )
     end
     it do
       is_expected.to contain_package('beegfs-helperd')
         .with(
-          'ensure' => 'present'
-        )
-    end
-    it do
-      is_expected.to contain_package('beegfs-client')
-        .with(
-          'ensure' => 'present'
+          'ensure' => 'present',
         )
     end
   end

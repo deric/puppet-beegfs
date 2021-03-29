@@ -5,10 +5,10 @@ require 'spec_helper'
 describe 'beegfs::mount' do
   let(:facts) do
     {
-      :operatingsystem => 'Debian',
-    :osfamily => 'Debian',
-    :lsbdistcodename => 'wheezy',
-    :lsbdistid => 'Debian',
+      operatingsystem: 'Debian',
+    osfamily: 'Debian',
+    lsbdistcodename: 'wheezy',
+    lsbdistid: 'Debian',
     }
   end
 
@@ -16,16 +16,16 @@ describe 'beegfs::mount' do
 
   let(:params) do
     {
-      :cfg   => '/etc/beegfs/beegfs-clients.conf',
-    :mnt   => '/mnt/share',
-    :user  => 'root',
-    :group => 'root',
+      cfg: '/etc/beegfs/beegfs-clients.conf',
+    mnt: '/mnt/share',
+    user: 'root',
+    group: 'root',
     }
   end
 
   it do
-    should contain_concat__fragment(
-      '/mnt/share'
+    is_expected.to contain_concat__fragment(
+      '/mnt/share',
     ).with_content('/mnt/share /etc/beegfs/beegfs-clients.conf')
   end
 end

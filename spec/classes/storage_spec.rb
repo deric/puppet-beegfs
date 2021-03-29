@@ -3,31 +3,30 @@
 require 'spec_helper'
 
 describe 'beegfs::storage' do
-  let(:hiera_data) { { 'beegfs::mgmtd_host' => "foo.bar" } }
+  let(:hiera_data) { { 'beegfs::mgmtd_host' => 'foo.bar' } }
 
   let(:facts) do
     {
       # still old fact is needed due to this
       # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-      :osfamily => 'Debian',
-      :os => {
-        :family => 'Debian',
-        :name => 'Debian',
-        :architecture => 'amd64',
-        :distro => { :codename => 'jessie' },
-        :release => { :major => '7', :minor => '1', :full => '7.1' },
+      osfamily: 'Debian',
+      os: {
+        family: 'Debian',
+        name: 'Debian',
+        architecture: 'amd64',
+        distro: { codename: 'jessie' },
+        release: { major: '7', minor: '1', full: '7.1' },
       },
-      :puppetversion => Puppet.version,
+      puppetversion: Puppet.version,
     }
   end
-
 
   let(:user) { 'beegfs' }
   let(:group) { 'beegfs' }
 
   let(:params) do
     {
-      'user'  => user,
+      'user' => user,
     'group' => group,
     }
   end
@@ -45,23 +44,23 @@ describe 'beegfs::storage' do
       {
         # still old fact is needed due to this
         # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-        :osfamily => 'Debian',
-        :os => {
-          :family => 'Debian',
-          :name => os,
-          :architecture => 'amd64',
-          :distro => { :codename => codename },
-          :release => { :major => '7', :minor => '1', :full => '7.1' },
+        osfamily: 'Debian',
+        os: {
+          family: 'Debian',
+          name: os,
+          architecture: 'amd64',
+          distro: { codename: codename },
+          release: { major: '7', minor: '1', full: '7.1' },
         },
-        :puppetversion => Puppet.version,
+        puppetversion: Puppet.version,
       }
     end
 
     it { is_expected.to contain_package('beegfs-utils') }
     it do
       is_expected.to contain_service('beegfs-storage').with(
-        :ensure => 'running',
-        :enable => true
+        ensure: 'running',
+        enable: true,
       )
     end
 
@@ -71,7 +70,7 @@ describe 'beegfs::storage' do
           'ensure'  => 'present',
           'owner'   => user,
           'group'   => group,
-          'mode'    => '0644'
+          'mode'    => '0644',
         )
     end
 
@@ -80,14 +79,14 @@ describe 'beegfs::storage' do
         .with(
           'ensure'  => 'directory',
         'owner'   => user,
-        'group'   => group
+        'group'   => group,
         )
     end
 
     it do
       is_expected.to contain_service('beegfs-storage').with(
-        :ensure => 'running',
-        :enable => true
+        ensure: 'running',
+        enable: true,
       )
     end
   end
@@ -113,11 +112,11 @@ describe 'beegfs::storage' do
     let(:group) { 'beegfs' }
 
     let(:params) do
-    {
-      'user'  => user,
-      'group' => group,
-      :storage_directory => ['/srv/beefgs/storage'],
-    }
+      {
+        'user'  => user,
+        'group' => group,
+        :storage_directory => ['/srv/beefgs/storage'],
+      }
     end
 
     let :pre_condition do
@@ -130,14 +129,14 @@ describe 'beegfs::storage' do
       let(:version) { '2012.10.r8.debian7' }
       let(:params) do
         {
-          :package_ensure => version,
+          package_ensure: version,
         }
       end
 
       it do
         is_expected.to contain_package('beegfs-storage')
           .with(
-            'ensure' => version
+            'ensure' => version,
           )
       end
     end
@@ -148,17 +147,17 @@ describe 'beegfs::storage' do
           'ensure'  => 'present',
           'owner'   => user,
           'group'   => group,
-          'mode'    => '0644'
-        ).with_content(/eth0/)
+          'mode'    => '0644',
+        ).with_content(%r{eth0})
     end
 
     context 'interfaces file' do
       let(:params) do
         {
-          :interfaces      => ['eth0', 'ib0'],
-          :interfaces_file => '/etc/beegfs/store.itf',
-          :user            => user,
-          :group           => group,
+          interfaces: ['eth0', 'ib0'],
+          interfaces_file: '/etc/beegfs/store.itf',
+          user: user,
+          group: group,
         }
       end
 
@@ -168,22 +167,21 @@ describe 'beegfs::storage' do
             'ensure'  => 'present',
         'owner'   => user,
         'group'   => group,
-        'mode'    => '0644'
-          ).with_content(/ib0/)
+        'mode'    => '0644',
+          ).with_content(%r{ib0})
       end
-
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-storage.conf'
-        ).with_content(/connInterfacesFile(\s+)=(\s+)\/etc\/beegfs\/store.itf/)
+          '/etc/beegfs/beegfs-storage.conf',
+        ).with_content(%r{connInterfacesFile(\s+)=(\s+)/etc/beegfs/store.itf})
       end
     end
 
     it do
       is_expected.to contain_file(
-        '/etc/beegfs/beegfs-storage.conf'
-      ).with_content(/logLevel(\s+)=(\s+)3/)
+        '/etc/beegfs/beegfs-storage.conf',
+      ).with_content(%r{logLevel(\s+)=(\s+)3})
     end
 
     context 'changing log level' do
@@ -195,8 +193,8 @@ describe 'beegfs::storage' do
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-storage.conf'
-        ).with_content(/logLevel(\s+)=(\s+)5/)
+          '/etc/beegfs/beegfs-storage.conf',
+        ).with_content(%r{logLevel(\s+)=(\s+)5})
       end
     end
 
@@ -209,8 +207,8 @@ describe 'beegfs::storage' do
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-storage.conf'
-        ).with_content(/sysMgmtdHost(\s+)=(\s+)mgmtd.beegfs.com/)
+          '/etc/beegfs/beegfs-storage.conf',
+        ).with_content(%r{sysMgmtdHost(\s+)=(\s+)mgmtd.beegfs.com})
       end
     end
 
@@ -223,24 +221,24 @@ describe 'beegfs::storage' do
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-storage.conf'
-        ).with_content(/connMgmtdPortTCP(\s+)=(\s+)9009/)
+          '/etc/beegfs/beegfs-storage.conf',
+        ).with_content(%r{connMgmtdPortTCP(\s+)=(\s+)9009})
       end
     end
 
     context 'pass storage directory as an array' do
       let(:params) do
         {
-          :storage_directory => ['/var/storage1','/var/storage2'],
-          :user => user,
-          :group => group,
+          storage_directory: ['/var/storage1', '/var/storage2'],
+          user: user,
+          group: group,
         }
       end
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-storage.conf'
-        ).with_content(/storeStorageDirectory(\s+)=(\s+)\/var\/storage1,\/var\/storage2/)
+          '/etc/beegfs/beegfs-storage.conf',
+        ).with_content(%r{storeStorageDirectory(\s+)=(\s+)/var/storage1,/var/storage2})
       end
 
       it do
@@ -248,7 +246,7 @@ describe 'beegfs::storage' do
           .with(
             'ensure'  => 'directory',
             'owner'   => user,
-            'group'   => group
+            'group'   => group,
           )
       end
 
@@ -257,7 +255,7 @@ describe 'beegfs::storage' do
           .with(
             'ensure'  => 'directory',
             'owner'   => user,
-            'group'   => group
+            'group'   => group,
           )
       end
     end
@@ -265,14 +263,14 @@ describe 'beegfs::storage' do
     context 'disable first run init' do
       let(:params) do
         {
-          :allow_first_run_init => false,
+          allow_first_run_init: false,
         }
       end
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-storage.conf'
-        ).with_content(/storeAllowFirstRunInit(\s+)=(\s+)false/)
+          '/etc/beegfs/beegfs-storage.conf',
+        ).with_content(%r{storeAllowFirstRunInit(\s+)=(\s+)false})
       end
     end
   end
@@ -293,11 +291,11 @@ describe 'beegfs::storage' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => "http://www.beegfs.io/release/beegfs_6",
+        'location' => 'http://www.beegfs.io/release/beegfs_6',
         'repos'    => 'non-free',
         'release'  => 'deb7',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs'},
-        'include'  => { 'src' => false, 'deb' => true }
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs' },
+        'include'  => { 'src' => false, 'deb' => true },
       )
     }
   end

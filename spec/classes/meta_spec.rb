@@ -7,15 +7,15 @@ describe 'beegfs::meta' do
     {
       # still old fact is needed due to this
       # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-      :osfamily => 'Debian',
-      :os => {
-        :family => 'Debian',
-        :name => 'Debian',
-        :architecture => 'amd64',
-        :distro => { :codename => 'jessie' },
-        :release => { :major => '7', :minor => '1', :full => '7.1' },
+      osfamily: 'Debian',
+      os: {
+        family: 'Debian',
+        name: 'Debian',
+        architecture: 'amd64',
+        distro: { codename: 'jessie' },
+        release: { major: '7', minor: '1', full: '7.1' },
       },
-      :puppetversion => Puppet.version,
+      puppetversion: Puppet.version,
     }
   end
 
@@ -24,8 +24,8 @@ describe 'beegfs::meta' do
 
   let(:params) do
     {
-      :user  => user,
-      :group => group,
+      user: user,
+      group: group,
     }
   end
 
@@ -37,15 +37,15 @@ describe 'beegfs::meta' do
       {
         # still old fact is needed due to this
         # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-        :osfamily => 'Debian',
-        :os => {
-          :family => 'Debian',
-          :name => os,
-          :architecture => 'amd64',
-          :distro => { :codename => codename },
-          :release => { :major => '7', :minor => '1', :full => '7.1' },
+        osfamily: 'Debian',
+        os: {
+          family: 'Debian',
+          name: os,
+          architecture: 'amd64',
+          distro: { codename: codename },
+          release: { major: '7', minor: '1', full: '7.1' },
         },
-        :puppetversion => Puppet.version,
+        puppetversion: Puppet.version,
       }
     end
     let :pre_condition do
@@ -54,7 +54,6 @@ describe 'beegfs::meta' do
        }"
     end
 
-
     it { is_expected.to contain_package('beegfs-meta') }
     it { is_expected.to contain_package('beegfs-utils') }
 
@@ -62,8 +61,8 @@ describe 'beegfs::meta' do
 
     it do
       is_expected.to contain_service('beegfs-meta').with(
-        :ensure => 'running',
-        :enable => true
+        ensure: 'running',
+        enable: true,
       )
     end
 
@@ -73,7 +72,7 @@ describe 'beegfs::meta' do
           'ensure'  => 'present',
           'owner'   => user,
           'group'   => group,
-          'mode'    => '0644'
+          'mode'    => '0644',
         )
     end
   end
@@ -96,14 +95,14 @@ describe 'beegfs::meta' do
     context 'allow changing parameters' do
       let(:params) do
         {
-          :mgmtd_host => '192.168.1.1',
+          mgmtd_host: '192.168.1.1',
         }
       end
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-meta.conf'
-        ).with_content(/sysMgmtdHost(\s+)=(\s+)192.168.1.1/)
+          '/etc/beegfs/beegfs-meta.conf',
+        ).with_content(%r{sysMgmtdHost(\s+)=(\s+)192.168.1.1})
       end
     end
 
@@ -112,15 +111,15 @@ describe 'beegfs::meta' do
         {
           # still old fact is needed due to this
           # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-          :osfamily => 'Debian',
-          :os => {
-            :family => 'Debian',
-            :name => 'Debian',
-            :architecture => 'amd64',
-            :distro => { :codename => 'wheezy' },
-            :release => { :major => '7', :minor => '1', :full => '7.1' },
+          osfamily: 'Debian',
+          os: {
+            family: 'Debian',
+            name: 'Debian',
+            architecture: 'amd64',
+            distro: { codename: 'wheezy' },
+            release: { major: '7', minor: '1', full: '7.1' },
           },
-          :puppetversion => Puppet.version,
+          puppetversion: Puppet.version,
         }
       end
       let(:version) { '2015.03.r8.debian7' }
@@ -133,7 +132,7 @@ describe 'beegfs::meta' do
       it do
         is_expected.to contain_package('beegfs-meta')
           .with(
-            'ensure' => version
+            'ensure' => version,
           )
       end
     end
@@ -141,20 +140,20 @@ describe 'beegfs::meta' do
     it do
       is_expected.to contain_file('/etc/beegfs/interfaces.meta')
         .with(
-          'ensure'  => 'present',
+          'ensure' => 'present',
       'owner'   => user,
       'group'   => group,
-      'mode'    => '0644'
-        ).with_content(/eth0/)
+      'mode'    => '0644',
+        ).with_content(%r{eth0})
     end
 
     context 'interfaces file' do
       let(:params) do
         {
-          :interfaces      => ['eth0', 'ib0'],
-          :interfaces_file => '/etc/beegfs/meta.itf',
-          :user            => user,
-          :group           => group,
+          interfaces: ['eth0', 'ib0'],
+          interfaces_file: '/etc/beegfs/meta.itf',
+          user: user,
+          group: group,
         }
       end
 
@@ -164,22 +163,21 @@ describe 'beegfs::meta' do
             'ensure'  => 'present',
             'owner'   => user,
             'group'   => group,
-            'mode'    => '0644'
-          ).with_content(/ib0/)
+            'mode'    => '0644',
+          ).with_content(%r{ib0})
       end
-
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-meta.conf'
-        ).with_content(/connInterfacesFile(\s+)=(\s+)\/etc\/beegfs\/meta.itf/)
+          '/etc/beegfs/beegfs-meta.conf',
+        ).with_content(%r{connInterfacesFile(\s+)=(\s+)/etc/beegfs/meta.itf})
       end
     end
 
     it do
       is_expected.to contain_file(
-        '/etc/beegfs/beegfs-meta.conf'
-      ).with_content(/logLevel(\s+)=(\s+)3/)
+        '/etc/beegfs/beegfs-meta.conf',
+      ).with_content(%r{logLevel(\s+)=(\s+)3})
     end
 
     context 'changing log level' do
@@ -191,8 +189,8 @@ describe 'beegfs::meta' do
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-meta.conf'
-        ).with_content(/logLevel(\s+)=(\s+)5/)
+          '/etc/beegfs/beegfs-meta.conf',
+        ).with_content(%r{logLevel(\s+)=(\s+)5})
       end
     end
 
@@ -205,22 +203,22 @@ describe 'beegfs::meta' do
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-meta.conf'
-        ).with_content(/sysMgmtdHost(\s+)=(\s+)192.168.1.1/)
+          '/etc/beegfs/beegfs-meta.conf',
+        ).with_content(%r{sysMgmtdHost(\s+)=(\s+)192.168.1.1})
       end
     end
 
     context 'disable first run init' do
       let(:params) do
         {
-          :allow_first_run_init => false,
+          allow_first_run_init: false,
         }
       end
 
       it do
         is_expected.to contain_file(
-          '/etc/beegfs/beegfs-meta.conf'
-        ).with_content(/storeAllowFirstRunInit(\s+)=(\s+)false/)
+          '/etc/beegfs/beegfs-meta.conf',
+        ).with_content(%r{storeAllowFirstRunInit(\s+)=(\s+)false})
       end
     end
   end
@@ -241,11 +239,11 @@ describe 'beegfs::meta' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => "http://www.beegfs.io/release/beegfs_6",
+        'location' => 'http://www.beegfs.io/release/beegfs_6',
         'repos'    => 'non-free',
         'release'  => 'deb7',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs'},
-        'include'  => { 'src' => false, 'deb' => true }
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs' },
+        'include'  => { 'src' => false, 'deb' => true },
       )
     }
   end
