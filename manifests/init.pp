@@ -29,6 +29,7 @@ class beegfs (
   Stdlib::AbsolutePath        $admon_db_file                 = '/var/lib/beegfs/beegfs-admon.db',
   Boolean                     $enable_quota                  = false,
   Boolean                     $enable_acl                    = false,
+  Boolean                     $allow_user_set_pattern        = false,
   Boolean                     $allow_new_servers             = false,
   Boolean                     $allow_new_targets             = false,
   Stdlib::Port                $admon_http_port               = 8000,
