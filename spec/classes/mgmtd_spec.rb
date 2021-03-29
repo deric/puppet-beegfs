@@ -7,15 +7,15 @@ describe 'beegfs::mgmtd' do
     {
       # still old fact is needed due to this
       # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-      :osfamily => 'Debian',
-      :os => {
-        :family => 'Debian',
-        :name => 'Debian',
-        :architecture => 'amd64',
-        :distro => { :codename => 'jessie' },
-        :release => { :major => '7', :minor => '1', :full => '7.1' },
+      osfamily: 'Debian',
+      os: {
+        family: 'Debian',
+        name: 'Debian',
+        architecture: 'amd64',
+        distro: { codename: 'jessie' },
+        release: { major: '7', minor: '1', full: '7.1' },
       },
-      :puppetversion => Puppet.version,
+      puppetversion: Puppet.version,
     }
   end
 
@@ -24,8 +24,8 @@ describe 'beegfs::mgmtd' do
 
   let(:params) do
     {
-      :user  => user,
-      :group => group,
+      user: user,
+      group: group,
     }
   end
 
@@ -34,15 +34,15 @@ describe 'beegfs::mgmtd' do
       {
         # still old fact is needed due to this
         # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
-        :osfamily => 'Debian',
-        :os => {
-          :family => 'Debian',
-          :name => os,
-          :architecture => 'amd64',
-          :distro => { :codename => codename },
-          :release => { :major => '7', :minor => '1', :full => '7.1' },
+        osfamily: 'Debian',
+        os: {
+          family: 'Debian',
+          name: os,
+          architecture: 'amd64',
+          distro: { codename: codename },
+          release: { major: '7', minor: '1', full: '7.1' },
         },
-        :puppetversion => Puppet.version,
+        puppetversion: Puppet.version,
       }
     end
 
@@ -65,8 +65,8 @@ describe 'beegfs::mgmtd' do
 
     it do
       is_expected.to contain_service('beegfs-mgmtd').with(
-        :ensure => 'running',
-        :enable => true
+        ensure: 'running',
+        enable: true,
       )
     end
   end
@@ -80,9 +80,9 @@ describe 'beegfs::mgmtd' do
     let(:version) { '2012.10.r8.debian7' }
     let(:params) do
       {
-        :package_ensure => version,
-        :user           => user,
-        :group          => group,
+        package_ensure: version,
+        user: user,
+        group: group,
       }
     end
 
@@ -93,31 +93,31 @@ describe 'beegfs::mgmtd' do
     end
 
     it do
-      should contain_package('beegfs-mgmtd')
+      is_expected.to contain_package('beegfs-mgmtd')
         .with(
-          'ensure' => version
+          'ensure' => version,
         )
     end
   end
 
   it do
-    should contain_file('/etc/beegfs/interfaces.mgmtd')
+    is_expected.to contain_file('/etc/beegfs/interfaces.mgmtd')
       .with(
-        'ensure'  => 'present',
+        'ensure' => 'present',
     'owner'   => user,
     'group'   => group,
-    'mode'    => '0644'
-      ).with_content(/eth0/)
+    'mode'    => '0644',
+      ).with_content(%r{eth0})
   end
 
   context 'interfaces file' do
     let(:params) do
-    {
-      :interfaces      => ['eth0', 'ib0'],
-      :interfaces_file => '/etc/beegfs/mgmtd.itf',
-      :user            => user,
-      :group           => group,
-    }
+      {
+        interfaces: ['eth0', 'ib0'],
+        interfaces_file: '/etc/beegfs/mgmtd.itf',
+        user: user,
+        group: group,
+      }
     end
 
     let :pre_condition do
@@ -127,27 +127,26 @@ describe 'beegfs::mgmtd' do
     end
 
     it do
-      should contain_file('/etc/beegfs/mgmtd.itf')
+      is_expected.to contain_file('/etc/beegfs/mgmtd.itf')
         .with(
           'ensure'  => 'present',
           'owner'   => user,
           'group'   => group,
-          'mode'    => '0644'
-        ).with_content(/ib0/)
+          'mode'    => '0644',
+        ).with_content(%r{ib0})
     end
 
-
     it do
-      should contain_file(
-        '/etc/beegfs/beegfs-mgmtd.conf'
-      ).with_content(/connInterfacesFile(\s+)=(\s+)\/etc\/beegfs\/mgmtd.itf/)
+      is_expected.to contain_file(
+        '/etc/beegfs/beegfs-mgmtd.conf',
+      ).with_content(%r{connInterfacesFile(\s+)=(\s+)/etc/beegfs/mgmtd.itf})
     end
   end
 
   it do
-    should contain_file(
-      '/etc/beegfs/beegfs-mgmtd.conf'
-    ).with_content(/logLevel(\s+)=(\s+)2/)
+    is_expected.to contain_file(
+      '/etc/beegfs/beegfs-mgmtd.conf',
+    ).with_content(%r{logLevel(\s+)=(\s+)2})
   end
 
   context 'changing log level' do
@@ -158,9 +157,9 @@ describe 'beegfs::mgmtd' do
     end
 
     it do
-      should contain_file(
-        '/etc/beegfs/beegfs-mgmtd.conf'
-      ).with_content(/logLevel(\s+)=(\s+)5/)
+      is_expected.to contain_file(
+        '/etc/beegfs/beegfs-mgmtd.conf',
+      ).with_content(%r{logLevel(\s+)=(\s+)5})
     end
   end
 
@@ -170,15 +169,16 @@ describe 'beegfs::mgmtd' do
          release => "6",
        }'
     end
+
     it { is_expected.to contain_package('beegfs-mgmtd') }
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => "http://www.beegfs.io/release/beegfs_6",
+        'location' => 'http://www.beegfs.io/release/beegfs_6',
         'repos'    => 'non-free',
         'release'  => 'deb7',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs'},
-        'include'  => { 'src' => false, 'deb' => true }
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs' },
+        'include'  => { 'src' => false, 'deb' => true },
       )
     }
   end
