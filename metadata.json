@@ -22,7 +22,7 @@
     },
     {
       "name": "puppetlabs-yumrepo_core",
-      "version_requirement": ">= 1.0.3"
+      "version_requirement": ">= 1.0.3 < 2.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -39,11 +39,10 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "10.04",
-        "12.04",
         "14.04",
         "16.04",
-        "18.04"
+        "18.04",
+        "20.04"
       ]
     },
     {
@@ -67,7 +66,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.9.0 < 7.0.0"
+      "version_requirement": ">= 4.9.0 < 8.0.0"
     }
   ]
 }
