@@ -22,6 +22,13 @@ Gemfile:
   required:
     ":development":
       - gem: 'librarian-puppet'
+  optional:
+    ':system_tests':
+      - gem: beaker
+      - gem: beaker-rspec
+      - gem: beaker-docker
+      - gem: beaker-puppet_install_helper
+      - gem: beaker-module_install_helper
 .gitignore:
   paths:
     - .rake_tasks~
