@@ -32,3 +32,4 @@ Gemfile:
 .gitignore:
   paths:
     - .rake_tasks~
+    - .tmp/*
