@@ -9,19 +9,19 @@
   "issues_url": "https://github.com/deric/puppet-beegfs/issues",
   "dependencies": [
     {
-      "name": "puppetlabs-stdlib",
+      "name": "puppetlabs/stdlib",
       "version_requirement": ">= 2.4.0 < 7.0.0"
     },
     {
-      "name": "puppetlabs-apt",
+      "name": "puppetlabs/apt",
       "version_requirement": ">= 3.0.0 < 7.0.0"
     },
     {
-      "name": "puppetlabs-concat",
+      "name": "puppetlabs/concat",
       "version_requirement": ">= 1.0.0 < 6.0.0"
     },
     {
-      "name": "puppetlabs-yumrepo_core",
+      "name": "puppetlabs/yumrepo_core",
       "version_requirement": ">= 1.0.3 < 2.0.0"
     }
   ],
