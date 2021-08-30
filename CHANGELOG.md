@@ -1,5 +1,11 @@
 # deric-beegfs Changelog
 
+## 2021-08-30 Release 0.7.0
+
+- Adding optional use of  sysAllowUserSetPattern [#19](https://github.com/deric/puppet-beegfs/pull/19)
+- Allow newer dependencies
+- Support newer distribution releases, drop very old ones (#20)
+
 ## 2020-11-18 Release 0.6.0
 
 - Support annomalies in versioning [#16](https://github.com/deric/puppet-beegfs/pull/16)
