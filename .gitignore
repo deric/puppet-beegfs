@@ -25,5 +25,6 @@
 .project
 .envrc
 /inventory.yaml
+/spec/fixtures/litmus_inventory.yaml
 .rake_tasks~
 .tmp/*
