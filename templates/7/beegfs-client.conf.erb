@@ -36,7 +36,7 @@ connMaxInternodeNum           = 12
 connMaxConcurrentAttempts     = 0
 connNetFilterFile             = <% if @networks %><%= @networks_file %><% end %>
 
-connUseRDMA                   = true
+connUseRDMA                   = <%= @enable_rdma %>
 connRDMABufNum                = 70
 connRDMABufSize               = 8192
 connRDMATypeOfService         = 0
@@ -60,7 +60,7 @@ sysXAttrsEnabled              = <%= @enable_acl %>
 tuneFileCacheType             = buffered
 tunePreferredMetaFile         =
 tunePreferredStorageFile      =
-tuneRemoteFSync               = true
+tuneRemoteFSync               = <%= @remote_fsync %>
 tuneUseGlobalAppendLocks      = false
 tuneUseGlobalFileLocks        = false
 
