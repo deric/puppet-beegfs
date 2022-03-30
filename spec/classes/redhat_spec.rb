@@ -50,12 +50,11 @@ describe 'beegfs::client' do
           'ensure' => 'present',
         )
     end
+
     it do
-      is_expected.to contain_package('kernel-devel')
-        .with(
-          'ensure' => 'present',
-        )
+      is_expected.to contain_package('kernel-devel').with_ensure(%r{present|installed})
     end
+
     it do
       is_expected.to contain_package('beegfs-helperd')
         .with(
@@ -92,12 +91,11 @@ describe 'beegfs::client' do
           'ensure' => 'present',
         )
     end
-    it do
-      is_expected.to contain_package('kernel-devel')
-        .with(
-          'ensure' => 'present',
-        )
-    end
+
+    it {
+      is_expected.to contain_package('kernel-devel').with_ensure(%r{present|installed})
+    }
+
     it do
       is_expected.to contain_package('beegfs-helperd')
         .with(

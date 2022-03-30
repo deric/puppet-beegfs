@@ -45,6 +45,7 @@ class beegfs::client (
     group   => $group,
     mode    => '0644',
     content => template("beegfs/${_release_major}/beegfs-helperd.conf.erb"),
+    require => Anchor['beegfs::repo'],
   }
 
   file { $interfaces_file:
@@ -89,6 +90,7 @@ class beegfs::client (
     group   => $group,
     mode    => '0644',
     content => template("beegfs/${_release_major}/beegfs-client-autobuild.conf.erb"),
+    require => Anchor['beegfs::repo'],
   }
 
   exec { '/etc/init.d/beegfs-client rebuild':
@@ -104,7 +106,7 @@ class beegfs::client (
 
   package { 'beegfs-client':
     ensure  => $package_ensure,
-    require => Anchor['beegfs::kernel_dev'],
+    require => [Anchor['beegfs::kernel_dev'], Anchor['beegfs::repo']],
   }
 
   service { 'beegfs-helperd':
@@ -119,7 +121,7 @@ class beegfs::client (
     owner   => $user,
     group   => $group,
     mode    => '0644',
-    require => Package['beegfs-client'],
+    require => [Package['beegfs-client'], Anchor['beegfs::repo']],
   }
 
   service { 'beegfs-client':

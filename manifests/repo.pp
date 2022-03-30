@@ -9,21 +9,18 @@ class beegfs::repo(
   $manage_repo    = $beegfs::manage_repo,
   $package_source = $beegfs::package_source,
 ) inherits beegfs {
-  anchor { 'beegfs::repo::begin': }
-  anchor { 'beegfs::repo::end': }
+  anchor { 'beegfs::repo': }
 
   case $facts['os']['family'] {
     'Debian': {
       class { 'beegfs::repo::debian':
         release => $release,
-        require => Anchor['beegfs::repo::begin'],
-        before  => Anchor['beegfs::repo::end'],
+        before  => Anchor['beegfs::repo'],
       }
     }
     'RedHat': {
       class { 'beegfs::repo::redhat':
-        require => Anchor['beegfs::repo::begin'],
-        before  => Anchor['beegfs::repo::end'],
+        before  => Anchor['beegfs::repo'],
       }
     }
     default: {

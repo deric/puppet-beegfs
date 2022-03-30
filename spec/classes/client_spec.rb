@@ -167,10 +167,7 @@ describe 'beegfs::client' do
         )
     end
     it do
-      is_expected.to contain_package('linux-headers-amd64')
-        .with(
-          'ensure' => 'present',
-        )
+      is_expected.to contain_package('linux-headers-amd64').with_ensure(%r{present|installed})
     end
     it do
       is_expected.to contain_package('beegfs-helperd')
@@ -184,9 +181,9 @@ describe 'beegfs::client' do
     is_expected.to contain_file('/etc/beegfs/interfaces.client')
       .with(
         'ensure' => 'present',
-    'owner'   => user,
-    'group'   => group,
-    'mode'    => '0644',
+        'owner'   => user,
+        'group'   => group,
+        'mode'    => '0644',
       ).with_content(%r{eth0})
   end
 
@@ -204,9 +201,9 @@ describe 'beegfs::client' do
       is_expected.to contain_file('/etc/beegfs/client.itf')
         .with(
           'ensure' => 'present',
-      'owner'   => user,
-      'group'   => group,
-      'mode'    => '0644',
+          'owner'   => user,
+          'group'   => group,
+          'mode'    => '0644',
         ).with_content(%r{ib0})
     end
 

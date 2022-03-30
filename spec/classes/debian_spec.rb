@@ -54,12 +54,11 @@ describe 'beegfs::client' do
           'ensure' => 'present',
         )
     end
+
     it do
-      is_expected.to contain_package('linux-headers-amd64')
-        .with(
-          'ensure' => 'present',
-        )
+      is_expected.to contain_package('linux-headers-amd64').with_ensure(%r{present|installed})
     end
+
     it do
       is_expected.to contain_package('beegfs-helperd')
         .with(
