@@ -26,6 +26,10 @@ Gemfile:
       - gem: beaker-docker
       - gem: beaker-puppet_install_helper
       - gem: beaker-module_install_helper
+    ':development':
+      - gem: 'github_changelog_generator'
+        version: '~> 1.15'
+        condition: "Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.3.0')"
 .gitignore:
   paths:
     - .rake_tasks~
