@@ -1,9 +1,10 @@
 # Manages APT repositories for Debian distros
 
 class beegfs::repo::debian (
-  Boolean         $manage_repo    = true,
-  Enum['beegfs']  $package_source = $beegfs::package_source,
-  Beegfs::Release $release        = $beegfs::release,
+  Boolean          $manage_repo    = true,
+  Enum['beegfs']   $package_source = $beegfs::package_source,
+  Beegfs::Release  $release        = $beegfs::release,
+  Optional[String] $gpg_key_id     = '055D000F1A9A092763B1F0DD14E8E08064497785'
 ) {
 
   anchor { 'beegfs::apt_repo' : }
@@ -59,8 +60,8 @@ class beegfs::repo::debian (
           architecture => 'amd64',
           release      => $_os_release,
           key          => {
-            'id'     => '055D000F1A9A092763B1F0DD14E8E08064497785',
-            'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs',
+            'id'     => $gpg_key_id,
+            'source' => "http://www.beegfs.com/release/beegfs_${_release}/gpg/DEB-GPG-KEY-beegfs",
           },
           include      => {
             'src' => false,

@@ -242,7 +242,7 @@ describe 'beegfs::meta' do
         'location' => 'http://www.beegfs.io/release/beegfs_6',
         'repos'    => 'non-free',
         'release'  => 'deb7',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_6/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }

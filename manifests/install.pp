@@ -41,7 +41,7 @@ class beegfs::install(
 
   package { 'beegfs-utils':
     ensure  => $package_ensure,
-    require => [Anchor['beegfs::repo::end']],
+    require => [Anchor['beegfs::repo']],
   }
 
 }

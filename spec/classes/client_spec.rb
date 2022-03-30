@@ -99,7 +99,7 @@ describe 'beegfs::client' do
         'location' => 'http://www.beegfs.io/release/beegfs_2015.03',
         'repos'    => 'non-free',
         'release'  => "deb#{major}",
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_2015.03/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }
@@ -167,10 +167,7 @@ describe 'beegfs::client' do
         )
     end
     it do
-      is_expected.to contain_package('linux-headers-amd64')
-        .with(
-          'ensure' => 'present',
-        )
+      is_expected.to contain_package('linux-headers-amd64').with_ensure(%r{present|installed})
     end
     it do
       is_expected.to contain_package('beegfs-helperd')
@@ -184,9 +181,9 @@ describe 'beegfs::client' do
     is_expected.to contain_file('/etc/beegfs/interfaces.client')
       .with(
         'ensure' => 'present',
-    'owner'   => user,
-    'group'   => group,
-    'mode'    => '0644',
+        'owner'   => user,
+        'group'   => group,
+        'mode'    => '0644',
       ).with_content(%r{eth0})
   end
 
@@ -204,9 +201,9 @@ describe 'beegfs::client' do
       is_expected.to contain_file('/etc/beegfs/client.itf')
         .with(
           'ensure' => 'present',
-      'owner'   => user,
-      'group'   => group,
-      'mode'    => '0644',
+          'owner'   => user,
+          'group'   => group,
+          'mode'    => '0644',
         ).with_content(%r{ib0})
     end
 
@@ -328,7 +325,7 @@ describe 'beegfs::client' do
         'location' => 'http://www.beegfs.io/release/beegfs_6',
         'repos'    => 'non-free',
         'release'  => 'deb7',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_6/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }
