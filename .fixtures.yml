@@ -1,3 +1,7 @@
 fixtures:
   symlinks:
     beegfs: "#{source_dir}"
+  forge_modules:
+     stdlib: "puppetlabs/stdlib"
+     concat: "puppetlabs/concat"
+     apt: "puppetlabs/apt"
