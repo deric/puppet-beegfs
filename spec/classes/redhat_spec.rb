@@ -64,7 +64,7 @@ describe 'beegfs::client' do
     end
   end
 
- context 'install 7.2.6 release yum repo and all required packages' do
+  context 'install 7.2.6 release yum repo and all required packages' do
     let(:release) { '7.2.6' }
     let(:params) do
       {

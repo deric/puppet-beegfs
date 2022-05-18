@@ -1,5 +1,12 @@
 # deric-beegfs Changelog
 
+## 2022-05-18 Release 0.7.1
+
+- Support name change for repo GPG key (since BeeGFS release 7.2.6) [#25](https://github.com/deric/puppet-beegfs/pull/25)
+- Make remoteFSync and connUseRDMA configurable [#21](https://github.com/deric/puppet-beegfs/pull/21)
+- Bump dependencies [#22](https://github.com/deric/puppet-beegfs/pull/22)
+- Better client resources ordering [#23](https://github.com/deric/puppet-beegfs/pull/23)
+
 ## 2021-08-30 Release 0.7.0
 
 - Adding optional use of  sysAllowUserSetPattern [#19](https://github.com/deric/puppet-beegfs/pull/19)
