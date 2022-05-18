@@ -1,8 +1,6 @@
 # puppet-beegfs
 
-[![Puppet
-Forge](http://img.shields.io/puppetforge/v/deric/beegfs.svg)](https://forge.puppetlabs.com/deric/beegfs) [![Build Status](https://travis-ci.org/deric/puppet-beegfs.svg?branch=master)](https://travis-ci.org/deric/puppet-beegfs) [![Puppet Forge
-Downloads](http://img.shields.io/puppetforge/dt/deric/beegfs.svg)](https://forge.puppetlabs.com/deric/beegfs/scores)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/deric/beegfs.svg)](https://forge.puppetlabs.com/deric/beegfs) [![Build Status](https://img.shields.io/github/workflow/status/deric/puppet-beegfs/Static%20&%20Spec%20Tests/master)](https://github.com/deric/puppet-beegfs/actions?query=branch%3Amaster) [![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/deric/beegfs.svg)](https://forge.puppetlabs.com/deric/beegfs/scores)
 
 ## Upgrade from `deric-beegfs` version `0.4.x` to `0.5.x`
 
