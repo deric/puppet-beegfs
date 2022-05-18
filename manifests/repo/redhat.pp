@@ -16,6 +16,12 @@ class beegfs::repo::redhat (
     $release
   }
 
+  $_gpg_key = if $release > '7.2.5' {
+    'GPG-KEY-beegfs'
+  } else {
+    'RPM-GPG-KEY-beegfs'
+  }
+
   if $manage_repo {
     case $package_source {
       'beegfs': {
@@ -23,7 +29,7 @@ class beegfs::repo::redhat (
           ensure   => 'present',
           descr    => "BeeGFS ${release} (rhel${_os_release})",
           baseurl  => "https://www.beegfs.io/release/beegfs_${_release}/dists/rhel${_os_release}",
-          gpgkey   => "https://www.beegfs.io/release/beegfs_${_release}/gpg/RPM-GPG-KEY-beegfs",
+          gpgkey   => "https://www.beegfs.io/release/beegfs_${_release}/gpg/${_gpg_key}",
           enabled  => '1',
           gpgcheck => '1',
         }
