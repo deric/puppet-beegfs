@@ -5,3 +5,4 @@ fixtures:
      stdlib: "puppetlabs/stdlib"
      concat: "puppetlabs/concat"
      apt: "puppetlabs/apt"
+     yumrepo_core: "puppetlabs/yumrepo_core"
