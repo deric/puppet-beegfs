@@ -41,6 +41,49 @@ describe 'beegfs::client' do
       is_expected.to contain_yumrepo('beegfs_rhel7').with(
         'enabled' => '1',
         'baseurl' => 'https://www.beegfs.io/release/beegfs_7_1/dists/rhel7',
+        'gpgkey'  => 'https://www.beegfs.io/release/beegfs_7_1/gpg/RPM-GPG-KEY-beegfs',
+      )
+    }
+
+    it do
+      is_expected.to contain_package('beegfs-client')
+        .with(
+          'ensure' => 'present',
+        )
+    end
+
+    it do
+      is_expected.to contain_package('kernel-devel').with_ensure(%r{present|installed})
+    end
+
+    it do
+      is_expected.to contain_package('beegfs-helperd')
+        .with(
+          'ensure' => 'present',
+        )
+    end
+  end
+
+ context 'install 7.2.6 release yum repo and all required packages' do
+    let(:release) { '7.2.6' }
+    let(:params) do
+      {
+        user: user,
+        group: group,
+      }
+    end
+
+    let :pre_condition do
+      "class {'beegfs':
+         release => '#{release}',
+       }"
+    end
+
+    it {
+      is_expected.to contain_yumrepo('beegfs_rhel7').with(
+        'enabled' => '1',
+        'baseurl' => 'https://www.beegfs.io/release/beegfs_7.2.6/dists/rhel7',
+        'gpgkey'  => 'https://www.beegfs.io/release/beegfs_7.2.6/gpg/GPG-KEY-beegfs',
       )
     }
 

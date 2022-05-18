@@ -67,6 +67,50 @@ describe 'beegfs::client' do
     end
   end
 
+  context 'install apt repository and all required packages on 7.2.6' do
+    let(:release) { '7.2.6' }
+    let(:params) do
+      {
+        user: user,
+        group: group,
+      }
+    end
+
+    let :pre_condition do
+      "class {'beegfs':
+         release => '#{release}',
+       }"
+    end
+
+    it {
+      is_expected.to contain_apt__source('beegfs').with(
+        'location' => 'http://www.beegfs.io/release/beegfs_7.2.6',
+        'repos'    => 'non-free',
+        'release'  => 'stretch',
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7.2.6/gpg/GPG-KEY-beegfs' },
+        'include'  => { 'src' => false, 'deb' => true },
+      )
+    }
+
+    it do
+      is_expected.to contain_package('beegfs-client')
+        .with(
+          'ensure' => 'present',
+        )
+    end
+
+    it do
+      is_expected.to contain_package('linux-headers-amd64').with_ensure(%r{present|installed})
+    end
+
+    it do
+      is_expected.to contain_package('beegfs-helperd')
+        .with(
+          'ensure' => 'present',
+        )
+    end
+  end
+
   context 'Ubuntu 18.04' do
     let(:release) { '7.1' }
     let(:facts) do
