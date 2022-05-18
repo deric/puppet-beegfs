@@ -18,6 +18,12 @@ class beegfs::repo::debian (
     $release
   }
 
+  $_gpg_key = if $release > '7.2.5' {
+    'GPG-KEY-beegfs'
+  } else {
+    'DEB-GPG-KEY-beegfs'
+  }
+
   case $release {
     '2015.03','6': {
       # 'deb8', 'deb9', etc.
