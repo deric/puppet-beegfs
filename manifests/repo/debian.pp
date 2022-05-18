@@ -67,7 +67,7 @@ class beegfs::repo::debian (
           release      => $_os_release,
           key          => {
             'id'     => $gpg_key_id,
-            'source' => "http://www.beegfs.com/release/beegfs_${_release}/gpg/DEB-GPG-KEY-beegfs",
+            'source' => "http://www.beegfs.com/release/beegfs_${_release}/gpg/${_gpg_key}",
           },
           include      => {
             'src' => false,
