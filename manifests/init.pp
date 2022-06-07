@@ -26,6 +26,7 @@ class beegfs (
   String                      $user                          = 'root',
   String                      $group                         = 'root',
   Beegfs::Release             $release                       = '7.1',
+  Optional[String]            $dist                          = undef,
   Stdlib::AbsolutePath        $admon_db_file                 = '/var/lib/beegfs/beegfs-admon.db',
   Boolean                     $enable_quota                  = false,
   Boolean                     $enable_acl                    = false,
@@ -52,6 +53,7 @@ class beegfs (
   # is overriden
   class { 'beegfs::install':
     release => $release,
+    dist    => $dist,
     user    => $user,
     group   => $group,
     log_dir => $log_dir,

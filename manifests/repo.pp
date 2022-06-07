@@ -8,6 +8,7 @@ class beegfs::repo (
   Beegfs::Release       $release,
   Boolean               $manage_repo    = $beegfs::manage_repo,
   Beegfs::PackageSource $package_source = $beegfs::package_source,
+  Optional[String]      $dist           = undef,
 ) inherits beegfs {
   anchor { 'beegfs::repo': }
 
@@ -15,6 +16,7 @@ class beegfs::repo (
     'Debian': {
       class { 'beegfs::repo::debian':
         release => $release,
+        dist    => $dist,
         before  => Anchor['beegfs::repo'],
       }
     }

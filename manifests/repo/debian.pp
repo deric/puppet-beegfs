@@ -4,7 +4,8 @@ class beegfs::repo::debian (
   Boolean          $manage_repo    = true,
   Enum['beegfs']   $package_source = $beegfs::package_source,
   Beegfs::Release  $release        = $beegfs::release,
-  Optional[String] $gpg_key_id     = '055D000F1A9A092763B1F0DD14E8E08064497785'
+  Optional[String] $gpg_key_id     = '055D000F1A9A092763B1F0DD14E8E08064497785',
+  Optional[String] $dist           = undef,
 ) {
   anchor { 'beegfs::apt_repo' : }
 
@@ -19,40 +20,50 @@ class beegfs::repo::debian (
 
   case $release {
     '2015.03','6': {
-      # 'deb8', 'deb9', etc.
-      $major = $facts.dig('os', 'release', 'major')
-      $_os_release = "deb${major}"
       # no semantic versioning
       $_gpg_key = 'DEB-GPG-KEY-beegfs'
     }
-    # '7' onwards uses traditional Debian codename
     default: {
       $_gpg_key = if versioncmp($release, '7.2.5') > 0 {
         'GPG-KEY-beegfs'
       } else {
         'DEB-GPG-KEY-beegfs'
       }
+    }
+  }
 
-      case $facts.dig('os', 'name') {
-        # https://askubuntu.com/questions/445487/what-debian-version-are-the-different-ubuntu-versions-based-on
-        'Ubuntu': {
-          case $facts.dig('os', 'release', 'full') {
-            '14.04','14.10','15.04','15.10':{
-              $_os_release = 'deb8'
-            }
-            '16.04','16.10','17.04','17.10':{
-              $_os_release = 'stretch'
-            }
-            '18.04','18.10','19.04','19.10':{
-              $_os_release = 'buster'
-            }
-            default: {
-              $_os_release = 'buster'
+  if $dist {
+    $_os_release = $dist
+  } else {
+    case $release {
+      '2015.03','6': {
+        # 'deb8', 'deb9', etc.
+        $major = $facts.dig('os', 'release', 'major')
+        $_os_release = "deb${major}"
+      }
+      # '7' onwards uses traditional Debian codename
+      default: {
+        case $facts.dig('os', 'name') {
+          # https://askubuntu.com/questions/445487/what-debian-version-are-the-different-ubuntu-versions-based-on
+          'Ubuntu': {
+            case $facts.dig('os', 'release', 'full') {
+              '14.04','14.10','15.04','15.10':{
+                $_os_release = 'deb8'
+              }
+              '16.04','16.10','17.04','17.10':{
+                $_os_release = 'stretch'
+              }
+              '18.04','18.10','19.04','19.10':{
+                $_os_release = 'buster'
+              }
+              default: {
+                $_os_release = 'buster'
+              }
             }
           }
-        }
-        default: {
-          $_os_release = $facts.dig('os', 'distro', 'codename')
+          default: {
+            $_os_release = $facts.dig('os', 'distro', 'codename')
+          }
         }
       }
     }

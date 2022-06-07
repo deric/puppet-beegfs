@@ -185,4 +185,41 @@ describe 'beegfs::client' do
       )
     }
   end
+
+  context 'override dist detection' do
+    let(:release) { '7.1.5' }
+
+    let(:facts) do
+      {
+        # still old fact is needed due to this
+        # https://github.com/puppetlabs/puppetlabs-apt/blob/master/manifests/params.pp#L3
+        osfamily: 'Debian',
+        os: {
+          family: 'Debian',
+          name: 'Debian',
+          architecture: 'amd64',
+          distro: { codename: 'buster' },
+          release: { major: '10', minor: '3', full: '10.3' },
+        },
+        puppetversion: Puppet.version,
+      }
+    end
+
+    let :pre_condition do
+      "class {'beegfs':
+         release => '#{release}',
+         dist    => 'stretch',
+       }"
+    end
+
+    it {
+      is_expected.to contain_apt__source('beegfs').with(
+        'location' => 'http://www.beegfs.io/release/beegfs_7.1.5',
+        'repos'    => 'non-free',
+        'release'  => 'stretch',
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7.1.5/gpg/DEB-GPG-KEY-beegfs' },
+        'include'  => { 'src' => false, 'deb' => true },
+      )
+    }
+  end
 end
