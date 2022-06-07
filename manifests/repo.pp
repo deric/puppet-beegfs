@@ -4,10 +4,10 @@
 #
 #
 # This class file is not called directly
-class beegfs::repo(
-  Beegfs::Release $release,
-  $manage_repo    = $beegfs::manage_repo,
-  $package_source = $beegfs::package_source,
+class beegfs::repo (
+  Beegfs::Release       $release,
+  Boolean               $manage_repo    = $beegfs::manage_repo,
+  Beegfs::PackageSource $package_source = $beegfs::package_source,
 ) inherits beegfs {
   anchor { 'beegfs::repo': }
 

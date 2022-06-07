@@ -44,14 +44,13 @@ class beegfs (
   Stdlib::Port                $mgmtd_tcp_port                = 8008,
   Stdlib::Port                $mgmtd_udp_port                = 8008,
 ) inherits beegfs::params {
-
   $package_ensure = pick($version, 'present')
 
   anchor { 'beegfs::install::completed': }
 
   # release variable needs to be propagated in case common `beegfs::release`
   # is overriden
-  class {'beegfs::install':
+  class { 'beegfs::install':
     release => $release,
     user    => $user,
     group   => $group,

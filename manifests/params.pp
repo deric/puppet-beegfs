@@ -4,7 +4,6 @@
 # It sets variables according to platform.
 #
 class beegfs::params {
-
   case $facts['os']['family'] {
     'Debian': {
       case $facts['os']['name'] {
@@ -12,8 +11,8 @@ class beegfs::params {
           $kernel_packages = ['linux-headers-amd64']
 
           $dist = has_key($facts['os'], 'distro') ? {
-            true =>  $facts['os']['distro']['codename'], # puppet 4.10.6 (puppetlabs)
-            false =>  $facts['os']['lsb']['distcodename'] # puppet 4.8.2 (debian) WHY?!
+            true => $facts['os']['distro']['codename'], # puppet 4.10.6 (puppetlabs)
+            false => $facts['os']['lsb']['distcodename'] # puppet 4.8.2 (debian) WHY?!
           }
 
           case $dist {

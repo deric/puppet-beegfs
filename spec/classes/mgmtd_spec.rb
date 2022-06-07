@@ -103,10 +103,10 @@ describe 'beegfs::mgmtd' do
   it do
     is_expected.to contain_file('/etc/beegfs/interfaces.mgmtd')
       .with(
-        'ensure' => 'present',
-    'owner'   => user,
-    'group'   => group,
-    'mode'    => '0644',
+        'ensure' => 'file',
+        'owner'   => user,
+        'group'   => group,
+        'mode'    => '0644',
       ).with_content(%r{eth0})
   end
 
@@ -129,7 +129,7 @@ describe 'beegfs::mgmtd' do
     it do
       is_expected.to contain_file('/etc/beegfs/mgmtd.itf')
         .with(
-          'ensure'  => 'present',
+          'ensure'  => 'file',
           'owner'   => user,
           'group'   => group,
           'mode'    => '0644',

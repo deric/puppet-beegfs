@@ -69,7 +69,7 @@ describe 'beegfs::meta' do
     it do
       is_expected.to contain_file('/etc/beegfs/beegfs-meta.conf')
         .with(
-          'ensure'  => 'present',
+          'ensure'  => 'file',
           'owner'   => user,
           'group'   => group,
           'mode'    => '0644',
@@ -140,10 +140,10 @@ describe 'beegfs::meta' do
     it do
       is_expected.to contain_file('/etc/beegfs/interfaces.meta')
         .with(
-          'ensure' => 'present',
-      'owner'   => user,
-      'group'   => group,
-      'mode'    => '0644',
+          'ensure' => 'file',
+          'owner'  => user,
+          'group'  => group,
+          'mode'   => '0644',
         ).with_content(%r{eth0})
     end
 
@@ -160,7 +160,7 @@ describe 'beegfs::meta' do
       it do
         is_expected.to contain_file('/etc/beegfs/meta.itf')
           .with(
-            'ensure'  => 'present',
+            'ensure'  => 'file',
             'owner'   => user,
             'group'   => group,
             'mode'    => '0644',

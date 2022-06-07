@@ -2,7 +2,7 @@
 #
 # This class is called from beegfs for install.
 #
-class beegfs::install(
+class beegfs::install (
   Boolean               $manage_repo    = $beegfs::manage_repo,
   Beegfs::PackageSource $package_source = $beegfs::package_source,
   String                $package_ensure = $beegfs::package_ensure,
@@ -11,8 +11,7 @@ class beegfs::install(
   String                $group          = $beegfs::group,
   Beegfs::Release       $release        = $beegfs::release,
 ) {
-
-  class {'beegfs::repo':
+  class { 'beegfs::repo':
     manage_repo    => $manage_repo,
     package_source => $package_source,
     release        => $release,
@@ -32,16 +31,15 @@ class beegfs::install(
 
   # make sure log directory exists
   ensure_resource('file', $log_dir, {
-    'ensure' => directory,
-    owner   => $user,
-    group   => $group,
-    recurse => true,
-    require => Anchor['beegfs::user'],
+      'ensure' => directory,
+      owner   => $user,
+      group   => $group,
+      recurse => true,
+      require => Anchor['beegfs::user'],
   })
 
   package { 'beegfs-utils':
     ensure  => $package_ensure,
     require => [Anchor['beegfs::repo']],
   }
-
 }

@@ -5,8 +5,8 @@
 class beegfs::client (
   String                  $user                     = $beegfs::user,
   String                  $group                    = $beegfs::group,
-                          $package_ensure           = $beegfs::package_ensure,
-                          $kernel_ensure            = present,
+  Optional[String]        $package_ensure           = $beegfs::package_ensure,
+  String                  $kernel_ensure            = present,
   Array[String]           $interfaces               = ['eth0'],
   Stdlib::AbsolutePath    $interfaces_file          = '/etc/beegfs/interfaces.client',
   Optional[Array[String]] $networks                 = undef,
@@ -28,7 +28,6 @@ class beegfs::client (
   Boolean                 $enable_rdma              = $beegfs::enable_rdma,
   Boolean                 $remote_fsync             = true,
 ) inherits beegfs {
-
   anchor { 'beegfs::kernel_dev' : }
 
   ensure_packages($kernel_packages, {
@@ -40,7 +39,7 @@ class beegfs::client (
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   file { '/etc/beegfs/beegfs-helperd.conf':
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
@@ -49,7 +48,7 @@ class beegfs::client (
   }
 
   file { $interfaces_file:
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
@@ -72,11 +71,11 @@ class beegfs::client (
   }
 
   file { '/etc/beegfs/beegfs-client.conf':
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
-    require =>[
+    require => [
       Package['beegfs-utils'],
       File[$interfaces_file],
       File[$networks_file],
@@ -85,7 +84,7 @@ class beegfs::client (
   }
 
   file { '/etc/beegfs/beegfs-client-autobuild.conf':
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
@@ -129,7 +128,7 @@ class beegfs::client (
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    require    => [ Package['beegfs-client'],
+    require    => [Package['beegfs-client'],
       Service['beegfs-helperd'],
       File[$interfaces_file],
       File[$networks_file],

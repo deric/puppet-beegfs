@@ -26,7 +26,6 @@ class beegfs::meta (
   Boolean                 $enable_rdma            = $beegfs::enable_rdma,
 
 ) inherits beegfs {
-
   package { 'beegfs-meta':
     ensure  => $package_ensure,
     require => Anchor['beegfs::install::completed'],
@@ -35,7 +34,7 @@ class beegfs::meta (
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   file { $interfaces_file:
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
@@ -58,7 +57,7 @@ class beegfs::meta (
   }
 
   file { '/etc/beegfs/beegfs-meta.conf':
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',

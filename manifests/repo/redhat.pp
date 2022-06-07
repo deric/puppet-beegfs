@@ -3,10 +3,9 @@
 class beegfs::repo::redhat (
   Boolean         $manage_repo    = true,
   Enum['beegfs']  $package_source = $beegfs::package_source,
-                  $package_ensure = $beegfs::package_ensure,
+  $package_ensure = $beegfs::package_ensure,
   Beegfs::Release $release        = $beegfs::release,
 ) {
-
   $_os_release = $facts.dig('os', 'release', 'major')
 
   # If using version 7.1 the release folder has an underscore instead of a period
@@ -16,7 +15,7 @@ class beegfs::repo::redhat (
     $release
   }
 
-  $_gpg_key = if $release > '7.2.5' {
+  $_gpg_key = if versioncmp($release, '7.2.5') > 0 {
     'GPG-KEY-beegfs'
   } else {
     'RPM-GPG-KEY-beegfs'

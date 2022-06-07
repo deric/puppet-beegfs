@@ -30,7 +30,6 @@ class beegfs::admon (
   Boolean                 $enable_acl               = $beegfs::enable_acl,
   Stdlib::AbsolutePath    $admon_db_file            = $beegfs::admon_db_file,
 ) inherits beegfs {
-
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   package { 'beegfs-admon':
@@ -39,7 +38,7 @@ class beegfs::admon (
   }
 
   file { $interfaces_file:
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
@@ -62,7 +61,7 @@ class beegfs::admon (
   }
 
   file { '/etc/beegfs/beegfs-admon.conf':
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     content => template("beegfs/${_release_major}/beegfs-admon.conf.erb"),
@@ -89,5 +88,4 @@ class beegfs::admon (
       File[$networks_file],
     ],
   }
-
 }

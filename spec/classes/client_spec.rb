@@ -87,10 +87,10 @@ describe 'beegfs::client' do
     it do
       is_expected.to contain_file('/etc/beegfs/beegfs-client.conf')
         .with({
-                'ensure' => 'present',
-      'owner'   => user,
-      'group'   => group,
-      'mode'    => '0644',
+                'ensure' => 'file',
+                'owner'   => user,
+                'group'   => group,
+                'mode'    => '0644',
               })
     end
 
@@ -180,7 +180,7 @@ describe 'beegfs::client' do
   it do
     is_expected.to contain_file('/etc/beegfs/interfaces.client')
       .with(
-        'ensure' => 'present',
+        'ensure' => 'file',
         'owner'   => user,
         'group'   => group,
         'mode'    => '0644',
@@ -200,7 +200,7 @@ describe 'beegfs::client' do
     it do
       is_expected.to contain_file('/etc/beegfs/client.itf')
         .with(
-          'ensure' => 'present',
+          'ensure' => 'file',
           'owner'   => user,
           'group'   => group,
           'mode'    => '0644',

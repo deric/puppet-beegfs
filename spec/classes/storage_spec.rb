@@ -67,7 +67,7 @@ describe 'beegfs::storage' do
     it do
       is_expected.to contain_file('/etc/beegfs/beegfs-storage.conf')
         .with(
-          'ensure'  => 'present',
+          'ensure'  => 'file',
           'owner'   => user,
           'group'   => group,
           'mode'    => '0644',
@@ -144,7 +144,7 @@ describe 'beegfs::storage' do
     it do
       is_expected.to contain_file('/etc/beegfs/interfaces.storage')
         .with(
-          'ensure'  => 'present',
+          'ensure'  => 'file',
           'owner'   => user,
           'group'   => group,
           'mode'    => '0644',
@@ -164,7 +164,7 @@ describe 'beegfs::storage' do
       it do
         is_expected.to contain_file('/etc/beegfs/store.itf')
           .with(
-            'ensure'  => 'present',
+            'ensure'  => 'file',
         'owner'   => user,
         'group'   => group,
         'mode'    => '0644',

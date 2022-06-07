@@ -6,7 +6,6 @@ class beegfs::repo::debian (
   Beegfs::Release  $release        = $beegfs::release,
   Optional[String] $gpg_key_id     = '055D000F1A9A092763B1F0DD14E8E08064497785'
 ) {
-
   anchor { 'beegfs::apt_repo' : }
 
   include apt
@@ -18,20 +17,22 @@ class beegfs::repo::debian (
     $release
   }
 
-  $_gpg_key = if $release > '7.2.5' {
-    'GPG-KEY-beegfs'
-  } else {
-    'DEB-GPG-KEY-beegfs'
-  }
-
   case $release {
     '2015.03','6': {
       # 'deb8', 'deb9', etc.
       $major = $facts.dig('os', 'release', 'major')
       $_os_release = "deb${major}"
+      # no semantic versioning
+      $_gpg_key = 'DEB-GPG-KEY-beegfs'
     }
     # '7' onwards uses traditional Debian codename
     default: {
+      $_gpg_key = if versioncmp($release, '7.2.5') > 0 {
+        'GPG-KEY-beegfs'
+      } else {
+        'DEB-GPG-KEY-beegfs'
+      }
+
       case $facts.dig('os', 'name') {
         # https://askubuntu.com/questions/445487/what-debian-version-are-the-different-ubuntu-versions-based-on
         'Ubuntu': {

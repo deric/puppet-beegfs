@@ -28,7 +28,6 @@ class beegfs::mgmtd (
   Stdlib::Port            $mgmtd_tcp_port                = $beegfs::mgmtd_tcp_port,
   Stdlib::Port            $mgmtd_udp_port                = $beegfs::mgmtd_udp_port,
 ) inherits beegfs {
-
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   package { 'beegfs-mgmtd':
@@ -45,7 +44,7 @@ class beegfs::mgmtd (
   }
 
   file { $interfaces_file:
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
@@ -68,7 +67,7 @@ class beegfs::mgmtd (
   }
 
   file { '/etc/beegfs/beegfs-mgmtd.conf':
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     content => template("beegfs/${_release_major}/beegfs-mgmtd.conf.erb"),

@@ -9,7 +9,6 @@ define beegfs::mount (
   $group      = $beegfs::group,
   $mounts_cfg = '/etc/beegfs/beegfs-mounts.conf',
 ) {
-
   file { $mnt:
     ensure => directory,
     owner  => $user,
@@ -22,5 +21,4 @@ define beegfs::mount (
     content => "${mnt} ${cfg}",
     require => File[$mnt],
   }
-
 }

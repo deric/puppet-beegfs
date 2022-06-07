@@ -12,7 +12,7 @@ class beegfs::storage (
   Beegfs::LogLevel            $log_level            = $beegfs::log_level,
   String                      $user                 = $beegfs::user,
   String                      $group                = $beegfs::group,
-                              $package_ensure       = $beegfs::package_ensure,
+  String                      $package_ensure       = $beegfs::package_ensure,
   Array[String]               $interfaces           = ['eth0'],
   Stdlib::AbsolutePath        $interfaces_file      = '/etc/beegfs/interfaces.storage',
   Optional[Array[String]]     $networks             = undef,
@@ -22,7 +22,6 @@ class beegfs::storage (
   Boolean                     $enable_quota         = $beegfs::enable_quota,
   Boolean                     $enable_rdma          = $beegfs::enable_rdma,
 ) inherits beegfs {
-
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   file { $storage_directory:
@@ -38,7 +37,7 @@ class beegfs::storage (
   }
 
   file { $interfaces_file:
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
@@ -61,7 +60,7 @@ class beegfs::storage (
   }
 
   file { '/etc/beegfs/beegfs-storage.conf':
-    ensure  => present,
+    ensure  => file,
     owner   => $user,
     group   => $group,
     mode    => '0644',
