@@ -22,7 +22,7 @@ sysMgmtdHost                  = <%= @mgmtd_host %>
 # --- Section 1.2: [Advanced Settings] ---
 #
 
-connAuthFile                  =
+connAuthFile                  = <%= $conn_auth_file %>
 connClientPortUDP             = <%= @client_udp_port %>
 connHelperdPortTCP            = <%= @helperd_tcp_port %>
 connMgmtdPortTCP              = <%= @mgmtd_tcp_port %>

@@ -32,6 +32,7 @@ class beegfs (
   Boolean                     $enable_acl                    = false,
   Boolean                     $allow_user_set_pattern        = false,
   Boolean                     $enable_rdma                   = true,
+  Optional[String]            $conn_auth_file                = undef,
   Boolean                     $allow_new_servers             = false,
   Boolean                     $allow_new_targets             = false,
   Stdlib::Port                $admon_http_port               = 8000,
