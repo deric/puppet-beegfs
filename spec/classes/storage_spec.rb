@@ -273,6 +273,20 @@ describe 'beegfs::storage' do
         ).with_content(%r{storeAllowFirstRunInit(\s+)=(\s+)false})
       end
     end
+
+    context 'configure connAuthFile' do
+      let(:params) do
+        {
+          conn_auth_file: '/etc/beegfs/connauthfile',
+        }
+      end
+
+      it do
+        is_expected.to contain_file(
+          '/etc/beegfs/beegfs-storage.conf',
+        ).with_content(%r{connAuthFile(\s+)=(\s+)/etc/beegfs/connauthfile})
+      end
+    end
   end
 
   context 'with beegfs' do

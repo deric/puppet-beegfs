@@ -252,7 +252,7 @@ describe 'beegfs::client' do
     let(:params) do
       {
         mgmtd_tcp_port: 1010,
-      mgmtd_udp_port: 1011,
+        mgmtd_udp_port: 1011,
       }
     end
 
@@ -308,6 +308,20 @@ describe 'beegfs::client' do
       is_expected.to contain_file(
         '/etc/beegfs/beegfs-client-autobuild.conf',
       ).with_content(%r{buildArgs=-j16})
+    end
+  end
+
+  context 'configure connAuthFile' do
+    let(:params) do
+      {
+        conn_auth_file: '/etc/beegfs/connauthfile',
+      }
+    end
+
+    it do
+      is_expected.to contain_file(
+        '/etc/beegfs/beegfs-client.conf',
+      ).with_content(%r{connAuthFile(\s+)=(\s+)/etc/beegfs/connauthfile})
     end
   end
 

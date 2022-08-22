@@ -182,4 +182,18 @@ describe 'beegfs::mgmtd' do
       )
     }
   end
+
+  context 'configure connAuthFile' do
+    let(:params) do
+      {
+        conn_auth_file: '/etc/beegfs/connauthfile',
+      }
+    end
+
+    it do
+      is_expected.to contain_file(
+        '/etc/beegfs/beegfs-mgmtd.conf',
+      ).with_content(%r{connAuthFile(\s+)=(\s+)/etc/beegfs/connauthfile})
+    end
+  end
 end

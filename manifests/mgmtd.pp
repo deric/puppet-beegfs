@@ -27,6 +27,7 @@ class beegfs::mgmtd (
   Boolean                 $allow_new_targets             = $beegfs::allow_new_targets,
   Stdlib::Port            $mgmtd_tcp_port                = $beegfs::mgmtd_tcp_port,
   Stdlib::Port            $mgmtd_udp_port                = $beegfs::mgmtd_udp_port,
+  Optional[Stdlib::AbsolutePath] $conn_auth_file         = $beegfs::conn_auth_file,
 ) inherits beegfs {
   $_release_major = beegfs::release_to_major($beegfs::release)
 
