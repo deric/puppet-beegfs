@@ -1,6 +1,7 @@
 # Class: beegfs::repo::redhat
 
 class beegfs::repo::redhat (
+  Stdlib::HTTPUrl $baseurl        = 'https://www.beegfs.io/release',
   Boolean         $manage_repo    = true,
   Enum['beegfs']  $package_source = $beegfs::package_source,
   Beegfs::Release $release        = $beegfs::release,
@@ -26,8 +27,8 @@ class beegfs::repo::redhat (
         yumrepo { "beegfs_rhel${_os_release}":
           ensure   => 'present',
           descr    => "BeeGFS ${release} (rhel${_os_release})",
-          baseurl  => "https://www.beegfs.io/release/beegfs_${_release}/dists/rhel${_os_release}",
-          gpgkey   => "https://www.beegfs.io/release/beegfs_${_release}/gpg/${_gpg_key}",
+          baseurl  => "${baseurl}/beegfs_${_release}/dists/rhel${_os_release}",
+          gpgkey   => "${baseurl}/beegfs_${_release}/gpg/${_gpg_key}",
           enabled  => '1',
           gpgcheck => '1',
         }
