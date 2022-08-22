@@ -3,7 +3,6 @@
 class beegfs::repo::redhat (
   Boolean         $manage_repo    = true,
   Enum['beegfs']  $package_source = $beegfs::package_source,
-  $package_ensure = $beegfs::package_ensure,
   Beegfs::Release $release        = $beegfs::release,
 ) {
   $_os_release = $facts.dig('os', 'release', 'major')
