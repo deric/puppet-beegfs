@@ -344,4 +344,17 @@ describe 'beegfs::client' do
       )
     }
   end
+
+  context 'do not manage service' do
+    let(:params) {{
+      manage_service: false,
+    }}
+
+    it do
+      is_expected.not_to contain_service('beegfs-client').with(
+        ensure: 'running',
+        enable: true,
+      )
+    end
+  end
 end

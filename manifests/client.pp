@@ -2,6 +2,9 @@
 #
 # This module manages beegfs client
 #
+# @param manage_service
+#    Whether service should be managed by puppet and restarted upon config changes
+#
 class beegfs::client (
   String                         $user                     = $beegfs::user,
   String                         $group                    = $beegfs::group,
@@ -28,6 +31,7 @@ class beegfs::client (
   Boolean                        $enable_rdma              = $beegfs::enable_rdma,
   Boolean                        $remote_fsync             = true,
   Optional[Stdlib::AbsolutePath] $conn_auth_file           = $beegfs::conn_auth_file,
+  Boolean                        $manage_service           = true,
 ) inherits beegfs {
   anchor { 'beegfs::kernel_dev' : }
 
@@ -124,23 +128,25 @@ class beegfs::client (
     require => [Package['beegfs-client'], Anchor['beegfs::repo']],
   }
 
-  service { 'beegfs-client':
-    ensure     => running,
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
-    require    => [Package['beegfs-client'],
-      Service['beegfs-helperd'],
-      File[$interfaces_file],
-      File[$networks_file],
-    ],
-    subscribe  => [
-      Concat['/etc/beegfs/beegfs-mounts.conf'],
-      File['/etc/beegfs/beegfs-client.conf'],
-      File['/etc/beegfs/beegfs-helperd.conf'],
-      Exec['/etc/init.d/beegfs-client rebuild'],
-      File[$interfaces_file],
-      File[$networks_file],
-    ],
+  if $manage_service {
+    service { 'beegfs-client':
+      ensure     => running,
+      enable     => true,
+      hasstatus  => true,
+      hasrestart => true,
+      require    => [Package['beegfs-client'],
+        Service['beegfs-helperd'],
+        File[$interfaces_file],
+        File[$networks_file],
+      ],
+      subscribe  => [
+        Concat['/etc/beegfs/beegfs-mounts.conf'],
+        File['/etc/beegfs/beegfs-client.conf'],
+        File['/etc/beegfs/beegfs-helperd.conf'],
+        Exec['/etc/init.d/beegfs-client rebuild'],
+        File[$interfaces_file],
+        File[$networks_file],
+      ],
+    }
   }
 }
