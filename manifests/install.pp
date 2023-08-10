@@ -36,7 +36,6 @@ class beegfs::install (
 
   group { 'beegfs':
     ensure  => present,
-    require => User['beegfs'],
   }
 
   # make sure log directory exists
@@ -45,7 +44,6 @@ class beegfs::install (
       owner   => $user,
       group   => $group,
       recurse => true,
-      require => User['beegfs'],
   })
 
   ensure_packages(['beegfs-utils'], {

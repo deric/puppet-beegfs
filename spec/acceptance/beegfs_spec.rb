@@ -11,8 +11,10 @@ describe 'beegfs meta' do
         release           => '7.1',
         allow_new_servers => true,
       }
-      class { 'beegfs::mgmtd': }
-      -> class { '::beegfs::meta':
+      class { 'beegfs::mgmtd':
+        directory => '/srv/mgmtd',
+      }
+      class { '::beegfs::meta':
         mgmtd_host => '127.0.0.1'
       }
       PUPPET
