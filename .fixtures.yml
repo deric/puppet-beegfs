@@ -4,7 +4,5 @@ fixtures:
   forge_modules:
     stdlib: puppetlabs/stdlib
     concat: "puppetlabs/concat"
-    apt:
-      repo: puppetlabs/apt
-      ref: 8.4.1
+    apt: puppetlabs/apt
     yumrepo_core: "puppetlabs/yumrepo_core"
