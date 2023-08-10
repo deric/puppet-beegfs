@@ -39,7 +39,14 @@ end
 group :system_tests do
   gem "puppet_litmus", '~> 1.0', require: false, platforms: [:ruby, :x64_mingw]
   gem "serverspec", '~> 2.41',   require: false
-  gem "voxpupuli-acceptance",    require: false
+end
+group :acceptance do
+  gem "beaker",                       require: false
+  gem "beaker-rspec",                 require: false
+  gem "beaker-docker",                require: false
+  gem "beaker-puppet_install_helper", require: false
+  gem "beaker-module_install_helper", require: false
+  gem "voxpupuli-acceptance",         require: false
 end
 group :release do
   gem "puppet-blacksmith", require: false
