@@ -1,5 +1,11 @@
 # deric-beegfs Changelog
 
+## 2023-08-10 Release 0.7.2
+
+- Add override parameter for baseurl in repo/redhat [#28](https://github.com/deric/puppet-beegfs/pull/28)
+- Add `conn_auth_file` parameter [#26](https://github.com/deric/puppet-beegfs/pull/26)
+
+
 ## 2022-05-18 Release 0.7.1
 
 - Support name change for repo GPG key (since BeeGFS release 7.2.6) [#25](https://github.com/deric/puppet-beegfs/pull/25)
