@@ -40,10 +40,10 @@ describe 'beegfs::client' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => 'http://www.beegfs.io/release/beegfs_7_1',
+        'location' => 'https://www.beegfs.io/release/beegfs_7_1',
         'repos'    => 'non-free',
         'release'  => 'stretch',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7_1/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'https://www.beegfs.com/release/beegfs_7_1/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }
@@ -84,10 +84,10 @@ describe 'beegfs::client' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => 'http://www.beegfs.io/release/beegfs_7.2.6',
+        'location' => 'https://www.beegfs.io/release/beegfs_7.2.6',
         'repos'    => 'non-free',
         'release'  => 'stretch',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7.2.6/gpg/GPG-KEY-beegfs' },
+        'key'      => { 'id' => '29C1C20045AA5168496B56BB4C4397E539C65AD6', 'source' => 'https://www.beegfs.com/release/beegfs_7.2.6/gpg/GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }
@@ -137,10 +137,10 @@ describe 'beegfs::client' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => 'http://www.beegfs.io/release/beegfs_7_1',
+        'location' => 'https://www.beegfs.io/release/beegfs_7_1',
         'repos'    => 'non-free',
         'release'  => 'buster', # TODO: 7.1.x has no buster release
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7_1/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'https://www.beegfs.com/release/beegfs_7_1/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }
@@ -157,10 +157,10 @@ describe 'beegfs::client' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => 'http://www.beegfs.io/release/beegfs_7.2',
+        'location' => 'https://www.beegfs.io/release/beegfs_7.2',
         'repos'    => 'non-free',
         'release'  => 'stretch',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7.2/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'https://www.beegfs.com/release/beegfs_7.2/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }
@@ -177,10 +177,10 @@ describe 'beegfs::client' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => 'http://www.beegfs.io/release/beegfs_7.1.5',
+        'location' => 'https://www.beegfs.io/release/beegfs_7.1.5',
         'repos'    => 'non-free',
         'release'  => 'stretch',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7.1.5/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'https://www.beegfs.com/release/beegfs_7.1.5/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }
@@ -214,10 +214,10 @@ describe 'beegfs::client' do
 
     it {
       is_expected.to contain_apt__source('beegfs').with(
-        'location' => 'http://www.beegfs.io/release/beegfs_7.1.5',
+        'location' => 'https://www.beegfs.io/release/beegfs_7.1.5',
         'repos'    => 'non-free',
         'release'  => 'stretch',
-        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'http://www.beegfs.com/release/beegfs_7.1.5/gpg/DEB-GPG-KEY-beegfs' },
+        'key'      => { 'id' => '055D000F1A9A092763B1F0DD14E8E08064497785', 'source' => 'https://www.beegfs.com/release/beegfs_7.1.5/gpg/DEB-GPG-KEY-beegfs' },
         'include'  => { 'src' => false, 'deb' => true },
       )
     }

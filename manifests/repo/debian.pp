@@ -10,7 +10,7 @@ class beegfs::repo::debian (
   Boolean          $manage_repo    = true,
   Enum['beegfs']   $package_source = $beegfs::package_source,
   Beegfs::Release  $release        = $beegfs::repo::release,
-  String           $gpg_key_id     = '29C1C20045AA5168496B56BB4C4397E539C65AD6',
+  Optional[String] $gpg_key_id     = undef,
   Optional[String] $dist           = undef,
 ) {
   include apt
@@ -26,12 +26,24 @@ class beegfs::repo::debian (
     '2015.03','6': {
       # no semantic versioning
       $_gpg_key = 'DEB-GPG-KEY-beegfs'
+      $_gpg_key_id = $gpg_key_id ? {
+        undef   => '055D000F1A9A092763B1F0DD14E8E08064497785',
+        default => $gpg_key_id,
+      }
     }
     default: {
-      $_gpg_key = if versioncmp($release, '7.2.5') > 0 {
-        'GPG-KEY-beegfs'
+      if versioncmp($release, '7.2.5') > 0 {
+        $_gpg_key = 'GPG-KEY-beegfs'
+        $_gpg_key_id = $gpg_key_id ? {
+          undef   => '29C1C20045AA5168496B56BB4C4397E539C65AD6',
+          default => $gpg_key_id,
+        }
       } else {
-        'DEB-GPG-KEY-beegfs'
+        $_gpg_key = 'DEB-GPG-KEY-beegfs'
+        $_gpg_key_id = $gpg_key_id ? {
+          undef   => '055D000F1A9A092763B1F0DD14E8E08064497785',
+          default => $gpg_key_id,
+        }
       }
     }
   }
@@ -82,7 +94,7 @@ class beegfs::repo::debian (
           architecture => 'amd64',
           release      => $_os_release,
           key          => {
-            'id'     => $gpg_key_id,
+            'id'     => $_gpg_key_id,
             'source' => "https://www.beegfs.com/release/beegfs_${_release}/gpg/${_gpg_key}",
           },
           include      => {
