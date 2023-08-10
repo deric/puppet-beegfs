@@ -12,7 +12,7 @@ class beegfs::meta (
   Beegfs::LogLevel               $log_level              = $beegfs::log_level,
   String                         $user                   = $beegfs::user,
   String                         $group                  = $beegfs::group,
-  $package_ensure                                 = lookup('beegfs::package_ensure', String, undef, $beegfs::package_ensure),
+  String                         $package_ensure         = $beegfs::package_ensure,
   Array[String]                  $interfaces             = ['eth0'],
   Stdlib::AbsolutePath           $interfaces_file        = '/etc/beegfs/interfaces.meta',
   Optional[Array[String]]        $networks               = undef,
@@ -25,7 +25,6 @@ class beegfs::meta (
   Stdlib::Port                   $mgmtd_udp_port         = $beegfs::mgmtd_udp_port,
   Boolean                        $enable_rdma            = $beegfs::enable_rdma,
   Optional[Stdlib::AbsolutePath] $conn_auth_file         = $beegfs::conn_auth_file,
-
 ) inherits beegfs {
   package { 'beegfs-meta':
     ensure  => $package_ensure,
