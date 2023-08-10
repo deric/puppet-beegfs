@@ -78,8 +78,6 @@ class beegfs (
 ) inherits beegfs::params {
   $package_ensure = pick($version, 'present')
 
-  anchor { 'beegfs::install::completed': }
-
   # release variable needs to be propagated in case common `beegfs::release`
   # is overriden
   class { 'beegfs::install':
@@ -88,6 +86,5 @@ class beegfs (
     user    => $user,
     group   => $group,
     log_dir => $log_dir,
-    before  => Anchor['beegfs::install::completed'],
   }
 }

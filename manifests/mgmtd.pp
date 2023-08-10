@@ -36,7 +36,7 @@ class beegfs::mgmtd (
   Beegfs::ByteAmount             $meta_space_emergency_limit    = $beegfs::meta_space_emergency_limit,
   Beegfs::ByteAmount             $storage_space_low_limit       = $beegfs::storage_space_low_limit,
   Beegfs::ByteAmount             $storage_space_emergency_limit = $beegfs::storage_space_emergency_limit,
-  String                         $version                       = $beegfs::version,
+  Optional[String]               $version                       = $beegfs::version,
   Beegfs::LogDir                 $log_dir                       = $beegfs::log_dir,
   Beegfs::LogType                $log_type                      = $beegfs::log_type,
   Beegfs::LogLevel               $log_level                     = 2,
@@ -58,7 +58,6 @@ class beegfs::mgmtd (
 
   package { 'beegfs-mgmtd':
     ensure  => $package_ensure,
-    require => Anchor['beegfs::install::completed'],
   }
 
   # mgmtd main directory

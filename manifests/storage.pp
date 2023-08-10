@@ -54,7 +54,6 @@ class beegfs::storage (
 
   package { 'beegfs-storage':
     ensure  => $package_ensure,
-    require => Anchor['beegfs::install::completed'],
   }
 
   file { $interfaces_file:

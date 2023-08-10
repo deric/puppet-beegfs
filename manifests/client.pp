@@ -135,7 +135,7 @@ class beegfs::client (
 
   package { 'beegfs-client':
     ensure  => $package_ensure,
-    require => [Anchor['beegfs::kernel_dev'], Anchor['beegfs::repo']],
+    require => [Anchor['beegfs::kernel_dev']],
   }
 
   service { 'beegfs-helperd':
@@ -150,7 +150,7 @@ class beegfs::client (
     owner   => $user,
     group   => $group,
     mode    => '0644',
-    require => [Package['beegfs-client'], Anchor['beegfs::repo']],
+    require => [Package['beegfs-client']],
   }
 
   if $manage_service {

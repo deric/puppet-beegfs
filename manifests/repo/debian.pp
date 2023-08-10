@@ -9,12 +9,10 @@
 class beegfs::repo::debian (
   Boolean          $manage_repo    = true,
   Enum['beegfs']   $package_source = $beegfs::package_source,
-  Beegfs::Release  $release        = $beegfs::release,
-  Optional[String] $gpg_key_id     = '055D000F1A9A092763B1F0DD14E8E08064497785',
+  Beegfs::Release  $release        = $beegfs::repo::release,
+  String           $gpg_key_id     = '055D000F1A9A092763B1F0DD14E8E08064497785',
   Optional[String] $dist           = undef,
 ) {
-  anchor { 'beegfs::apt_repo' : }
-
   include apt
 
   # If using version 7.1 the release folder has an underscore instead of a period
@@ -91,7 +89,6 @@ class beegfs::repo::debian (
             'src' => false,
             'deb' => true,
           },
-          before       => Anchor['beegfs::apt_repo'],
         }
       }
       default: {

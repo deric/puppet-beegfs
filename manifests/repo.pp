@@ -14,20 +14,15 @@ class beegfs::repo (
   Beegfs::PackageSource $package_source = $beegfs::package_source,
   Optional[String]      $dist           = undef,
 ) inherits beegfs {
-  anchor { 'beegfs::repo': }
-
   case $facts['os']['family'] {
     'Debian': {
       class { 'beegfs::repo::debian':
         release => $release,
         dist    => $dist,
-        before  => Anchor['beegfs::repo'],
       }
     }
     'RedHat': {
-      class { 'beegfs::repo::redhat':
-        before  => Anchor['beegfs::repo'],
-      }
+      contain beegfs::repo::redhat
     }
     default: {
       fail("Module '${module_name}' is not supported on OS: '${facts['os']['name']}', family: '${facts['os']['family']}'")

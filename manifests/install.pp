@@ -30,16 +30,13 @@ class beegfs::install (
     dist           => $dist,
   }
 
-  anchor { 'beegfs::user' : }
-
   user { 'beegfs':
     ensure => present,
-    before => Anchor['beegfs::user'],
   }
 
   group { 'beegfs':
-    ensure => present,
-    before => Anchor['beegfs::user'],
+    ensure  => present,
+    require => User['beegfs'],
   }
 
   # make sure log directory exists
@@ -48,11 +45,11 @@ class beegfs::install (
       owner   => $user,
       group   => $group,
       recurse => true,
-      require => Anchor['beegfs::user'],
+      require => User['beegfs'],
   })
 
-  package { 'beegfs-utils':
-    ensure  => $package_ensure,
-    require => [Anchor['beegfs::repo']],
-  }
+  ensure_packages(['beegfs-utils'], {
+      'ensure'  => $package_ensure,
+      'require' => Class['beegfs::repo']
+  })
 }

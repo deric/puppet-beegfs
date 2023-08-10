@@ -51,7 +51,6 @@ class beegfs::meta (
 ) inherits beegfs {
   package { 'beegfs-meta':
     ensure  => $package_ensure,
-    require => Anchor['beegfs::install::completed'],
   }
 
   $_release_major = beegfs::release_to_major($beegfs::release)
