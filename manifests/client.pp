@@ -42,7 +42,7 @@ class beegfs::client (
   Beegfs::Client::LogType        $log_type                 = 'helperd',
   Beegfs::LogLevel               $log_level                = $beegfs::log_level,
   Beegfs::LogDir                 $log_dir                  = $beegfs::log_dir,
-  Stdlib::Host                   $mgmtd_host               = lookup('beegfs::mgmtd_host', String, undef, $beegfs::mgmtd_host),
+  Stdlib::Host                   $mgmtd_host               = $beegfs::mgmtd_host,
   Stdlib::Port                   $client_udp_port          = $beegfs::client_udp_port,
   Stdlib::Port                   $helperd_tcp_port         = $beegfs::helperd_tcp_port,
   Stdlib::Port                   $mgmtd_tcp_port           = $beegfs::mgmtd_tcp_port,
@@ -58,11 +58,8 @@ class beegfs::client (
   Optional[Stdlib::AbsolutePath] $conn_auth_file           = $beegfs::conn_auth_file,
   Boolean                        $manage_service           = true,
 ) inherits beegfs {
-  anchor { 'beegfs::kernel_dev' : }
-
   ensure_packages($kernel_packages, {
       'ensure' => $kernel_ensure,
-      'before' => Anchor['beegfs::kernel_dev']
     }
   )
 

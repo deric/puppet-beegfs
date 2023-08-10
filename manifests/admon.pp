@@ -42,7 +42,7 @@ class beegfs::admon (
   Beegfs::LogDir          $log_dir                  = $beegfs::log_dir,
   Beegfs::LogType         $log_type                 = $beegfs::log_type,
   Beegfs::LogLevel        $log_level                = $beegfs::log_level,
-  Stdlib::Host            $mgmtd_host               = lookup('beegfs::mgmtd_host', String, undef, $beegfs::mgmtd_host),
+  Stdlib::Host            $mgmtd_host               = $beegfs::mgmtd_host,
   Stdlib::Port            $admon_http_port          = $beegfs::admon_http_port,
   Stdlib::Port            $admon_udp_port           = $beegfs::admon_udp_port,
   Stdlib::Port            $client_udp_port          = $beegfs::client_udp_port,
