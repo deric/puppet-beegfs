@@ -132,7 +132,7 @@ class beegfs::client (
 
   package { 'beegfs-client':
     ensure  => $package_ensure,
-    require => [Anchor['beegfs::kernel_dev']],
+    require => Package[$kernel_packages],
   }
 
   service { 'beegfs-helperd':
