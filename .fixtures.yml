@@ -2,7 +2,11 @@ fixtures:
   symlinks:
     beegfs: "#{source_dir}"
   forge_modules:
-     stdlib: "puppetlabs/stdlib"
-     concat: "puppetlabs/concat"
-     apt: "puppetlabs/apt"
-     yumrepo_core: "puppetlabs/yumrepo_core"
+    stdlib:
+      repo: puppetlabs/stdlib
+      ref: 7.1.0
+    concat: "puppetlabs/concat"
+    apt:
+      repo: puppetlabs/apt
+      ref: 8.4.1
+    yumrepo_core: "puppetlabs/yumrepo_core"
