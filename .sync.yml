@@ -16,7 +16,12 @@ appveyor.yml:
   unmanaged: true
 Gemfile:
   optional:
-    ':system_tests':
+    ':acceptance':
+      - gem: beaker
+      - gem: beaker-rspec
+      - gem: beaker-docker
+      - gem: beaker-puppet_install_helper
+      - gem: beaker-module_install_helper
       - gem: 'voxpupuli-acceptance'
     ':release':
       - gem: 'puppet-blacksmith'
