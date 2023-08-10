@@ -55,7 +55,7 @@ class beegfs (
   Beegfs::LogLevel               $log_level                     = 3,
   String                         $user                          = 'root',
   String                         $group                         = 'root',
-  Beegfs::Release                $release                       = '7.1',
+  Beegfs::Release                $release                       = '7.4.0',
   Optional[String]               $dist                          = undef,
   Stdlib::AbsolutePath           $admon_db_file                 = '/var/lib/beegfs/beegfs-admon.db',
   Boolean                        $enable_quota                  = false,

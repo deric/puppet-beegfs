@@ -7,14 +7,14 @@ describe 'beegfs meta' do
     # Using puppet_apply as a helper
     it 'works idempotently with no errors' do
       pp = <<-PUPPET
-      class { '::beegfs':
-        release           => '7.1',
+      class { 'beegfs':
+        release           => '7.4.0',
         allow_new_servers => true,
       }
       class { 'beegfs::mgmtd':
         directory => '/srv/mgmtd',
       }
-      class { '::beegfs::meta':
+      class { 'beegfs::meta':
         mgmtd_host => '127.0.0.1'
       }
       PUPPET

@@ -10,7 +10,7 @@ class beegfs::repo::debian (
   Boolean          $manage_repo    = true,
   Enum['beegfs']   $package_source = $beegfs::package_source,
   Beegfs::Release  $release        = $beegfs::repo::release,
-  String           $gpg_key_id     = '055D000F1A9A092763B1F0DD14E8E08064497785',
+  String           $gpg_key_id     = '29C1C20045AA5168496B56BB4C4397E539C65AD6',
   Optional[String] $dist           = undef,
 ) {
   include apt
@@ -77,13 +77,13 @@ class beegfs::repo::debian (
     case $package_source {
       'beegfs': {
         apt::source { 'beegfs':
-          location     => "http://www.beegfs.io/release/beegfs_${_release}",
+          location     => "https://www.beegfs.io/release/beegfs_${_release}",
           repos        => 'non-free',
           architecture => 'amd64',
           release      => $_os_release,
           key          => {
             'id'     => $gpg_key_id,
-            'source' => "http://www.beegfs.com/release/beegfs_${_release}/gpg/${_gpg_key}",
+            'source' => "https://www.beegfs.com/release/beegfs_${_release}/gpg/${_gpg_key}",
           },
           include      => {
             'src' => false,
