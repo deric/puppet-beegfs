@@ -20,7 +20,7 @@ describe 'beegfs meta' do
       # Run it twice and test for idempotency
       expect(apply_manifest(pp,
                             catch_failures: false,
-                            debug: true).exit_code).to be_zero
+                            debug: false).exit_code).to be_zero
       # apply_manifest(pp, :catch_changes  => true)
     end
 

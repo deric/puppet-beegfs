@@ -53,11 +53,14 @@ class beegfs::mgmtd (
   Stdlib::Port                   $mgmtd_tcp_port                = $beegfs::mgmtd_tcp_port,
   Stdlib::Port                   $mgmtd_udp_port                = $beegfs::mgmtd_udp_port,
   Optional[Stdlib::AbsolutePath] $conn_auth_file                = $beegfs::conn_auth_file,
-) inherits beegfs {
+) {
+  contain beegfs::install
+
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   package { 'beegfs-mgmtd':
     ensure  => $package_ensure,
+    require => Class['beegfs::install'],
   }
 
   # mgmtd main directory

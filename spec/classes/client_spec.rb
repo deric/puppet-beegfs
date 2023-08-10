@@ -26,8 +26,12 @@ describe 'beegfs::client' do
   let(:params) do
     {
       user: user,
-    group: group,
+      group: group,
     }
+  end
+
+  let :pre_condition do
+    'include beegfs'
   end
 
   it { is_expected.to contain_class('beegfs::client') }

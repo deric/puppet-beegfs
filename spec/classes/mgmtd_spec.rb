@@ -29,6 +29,10 @@ describe 'beegfs::mgmtd' do
     }
   end
 
+  let :pre_condition do
+    'include beegfs'
+  end
+
   shared_examples 'debian-mgmtd' do |os, codename|
     let(:facts) do
       {

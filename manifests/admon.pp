@@ -56,12 +56,13 @@ class beegfs::admon (
   Boolean                 $enable_quota             = $beegfs::enable_quota,
   Boolean                 $enable_acl               = $beegfs::enable_acl,
   Stdlib::AbsolutePath    $admon_db_file            = $beegfs::admon_db_file,
-) inherits beegfs {
+) {
+  contain beegfs::install
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   package { 'beegfs-admon':
     ensure  => $package_ensure,
-    require => Anchor['::beegfs::install::completed'],
+    require => Class['beegfs::install'],
   }
 
   file { $interfaces_file:

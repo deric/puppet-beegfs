@@ -48,9 +48,12 @@ class beegfs::meta (
   Stdlib::Port                   $mgmtd_udp_port         = $beegfs::mgmtd_udp_port,
   Boolean                        $enable_rdma            = $beegfs::enable_rdma,
   Optional[Stdlib::AbsolutePath] $conn_auth_file         = $beegfs::conn_auth_file,
-) inherits beegfs {
+) {
+  contain beegfs::install
+
   package { 'beegfs-meta':
     ensure  => $package_ensure,
+    require => Class['beegfs::install'],
   }
 
   $_release_major = beegfs::release_to_major($beegfs::release)

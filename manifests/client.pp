@@ -57,7 +57,9 @@ class beegfs::client (
   Boolean                        $remote_fsync             = true,
   Optional[Stdlib::AbsolutePath] $conn_auth_file           = $beegfs::conn_auth_file,
   Boolean                        $manage_service           = true,
-) inherits beegfs {
+) {
+  contain beegfs::install
+
   ensure_packages($kernel_packages, {
       'ensure' => $kernel_ensure,
     }
@@ -127,12 +129,13 @@ class beegfs::client (
   }
 
   package { 'beegfs-helperd':
-    ensure => $package_ensure,
+    ensure  => $package_ensure,
+    require => Class['beegfs::install'],
   }
 
   package { 'beegfs-client':
     ensure  => $package_ensure,
-    require => Package[$kernel_packages],
+    require => [Class['beegfs::install'], Package[$kernel_packages]],
   }
 
   service { 'beegfs-helperd':

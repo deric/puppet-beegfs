@@ -13,7 +13,7 @@ class beegfs::repo (
   Boolean               $manage_repo    = $beegfs::manage_repo,
   Beegfs::PackageSource $package_source = $beegfs::package_source,
   Optional[String]      $dist           = undef,
-) inherits beegfs {
+) {
   case $facts['os']['family'] {
     'Debian': {
       class { 'beegfs::repo::debian':
