@@ -1,7 +1,32 @@
 # Class: beegfs::client
 #
 # This module manages beegfs client
-#
+
+# @param user
+# @param group
+# @param package_ensure
+# @param kernel_ensure
+# @param interfaces
+# @param interfaces_file
+# @param networks
+# @param networks_file
+# @param log_type
+# @param log_level
+# @param log_dir
+# @param mgmtd_host
+# @param client_udp_port
+# @param helperd_tcp_port
+# @param mgmtd_tcp_port
+# @param mgmtd_udp_port
+# @param kernel_packages
+# @param autobuild
+# @param autobuild_args
+# @param tune_refresh_on_get_attr
+# @param enable_quota
+# @param enable_acl
+# @param enable_rdma
+# @param remote_fsync
+# @param conn_auth_file
 # @param manage_service
 #    Whether service should be managed by puppet and restarted upon config changes
 #

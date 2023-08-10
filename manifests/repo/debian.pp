@@ -1,4 +1,10 @@
 # Manages APT repositories for Debian distros
+#
+# @param manage_repo
+# @param package_source
+# @param release
+# @param gpg_key_id
+# @param dist
 
 class beegfs::repo::debian (
   Boolean          $manage_repo    = true,

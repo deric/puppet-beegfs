@@ -1,6 +1,26 @@
 # Class: beegfs::storage
 #
-# This module manages beegfs storage service
+# @desc beegfs storage service
+#
+# @param enable
+# @param storage_directory
+# @param allow_first_run_init
+# @param mgmtd_host
+# @param log_dir
+# @param log_type
+# @param log_level
+# @param user
+# @param group
+# @param package_ensure
+# @param interfaces
+# @param interfaces_file
+# @param networks
+# @param networks_file
+# @param mgmtd_tcp_port
+# @param mgmtd_udp_port
+# @param enable_quota
+# @param enable_rdma
+# @param conn_auth_file
 #
 class beegfs::storage (
   Boolean                        $enable               = true,

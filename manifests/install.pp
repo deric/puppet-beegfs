@@ -2,9 +2,17 @@
 #
 # This class is called from beegfs for install.
 #
+# @param manage_repo
+# @param package_source
+# @param package_ensure
+# @param log_dir
+# @param user
+# @param group
+# @param release
 # @param dist
 #   override OS distribution detection
 #
+# @api private
 class beegfs::install (
   Boolean               $manage_repo    = $beegfs::manage_repo,
   Beegfs::PackageSource $package_source = $beegfs::package_source,

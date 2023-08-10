@@ -2,6 +2,29 @@
 #
 # This module manages beegfs meta service
 #
+# @param enable
+# @param meta_directory
+# @param allow_first_run_init
+# @param mgmtd_host
+# @param log_dir
+# @param log_type
+# @param log_level
+# @param user
+# @param group
+# @param package_ensure
+# @param interfaces
+# @param interfaces_file
+# @param networks
+# @param networks_file
+# @param enable_acl
+# @param allow_user_set_pattern
+# @param meta_tcp_port
+# @param meta_udp_port
+# @param mgmtd_tcp_port
+# @param mgmtd_udp_port
+# @param enable_rdma
+# @param conn_auth_file
+#
 class beegfs::meta (
   Boolean                        $enable                 = true,
   Stdlib::AbsolutePath           $meta_directory         = $beegfs::meta_directory,

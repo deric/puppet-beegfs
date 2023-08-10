@@ -1,9 +1,13 @@
 # Class: beegfs::repo
 #
-# This module manages beegfs repository installation
+# Manage beegfs repository installation
 #
+# @param release
+# @param manage_repo
+# @param package_source
+# @param dist
 #
-# This class file is not called directly
+# @api private
 class beegfs::repo (
   Beegfs::Release       $release,
   Boolean               $manage_repo    = $beegfs::manage_repo,

@@ -1,5 +1,10 @@
 # Class: beegfs::repo::redhat
-
+# @param baseurl
+# @param manage_repo
+# @param package_source
+# @param release
+#
+# @api private
 class beegfs::repo::redhat (
   Stdlib::HTTPUrl $baseurl        = 'https://www.beegfs.io/release',
   Boolean         $manage_repo    = true,

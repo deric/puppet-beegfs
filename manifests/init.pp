@@ -1,12 +1,42 @@
 # Class: beegfs
 # ===========================
 #
-#
-# Parameters
-# ----------
-#
-# * `mgmtd_host`
-#   ipaddress of management node
+# @param manage_repo
+# @param mgmtd_host
+# @param meta_directory
+# @param storage_directory
+# @param client_auto_remove_mins
+# @param meta_space_low_limit
+# @param meta_space_emergency_limit
+# @param storage_space_low_limit
+# @param storage_space_emergency_limit
+# @param package_source
+# @param version
+# @param log_dir
+# @param log_type
+# @param log_level
+# @param user
+# @param group
+# @param release
+# @param dist
+# @param admon_db_file
+# @param enable_quota
+# @param enable_acl
+# @param allow_user_set_pattern
+# @param enable_rdma
+# @param conn_auth_file
+# @param allow_new_servers
+# @param allow_new_targets
+# @param admon_http_port
+# @param storage_tcp_port
+# @param storage_udp_port
+# @param client_udp_port
+# @param meta_tcp_port
+# @param meta_udp_port
+# @param helperd_tcp_port
+# @param admon_udp_port
+# @param mgmtd_tcp_port
+# @param mgmtd_udp_port
 #
 class beegfs (
   Boolean                        $manage_repo                   = true,

@@ -2,6 +2,33 @@
 #
 # This module manages beegfs admon
 #
+# @param enable
+# @param user
+# @param group
+# @param package_ensure
+# @param kernel_ensure
+# @param interfaces
+# @param interfaces_file
+# @param networks
+# @param networks_file
+# @param log_dir
+# @param log_type
+# @param log_level
+# @param mgmtd_host
+# @param admon_http_port
+# @param admon_udp_port
+# @param client_udp_port
+# @param helperd_tcp_port
+# @param mgmtd_tcp_port
+# @param mgmtd_udp_port
+# @param kernel_packages
+# @param autobuild
+# @param autobuild_args
+# @param tune_refresh_on_get_attr
+# @param enable_quota
+# @param enable_acl
+# @param admon_db_file
+#
 class beegfs::admon (
   Boolean                 $enable                   = true,
   String                  $user                     = $beegfs::user,
