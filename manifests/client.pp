@@ -5,6 +5,9 @@
 # @param manage_service
 #    Whether service should be managed by puppet and restarted upon config changes
 #
+# @param sys_file_event_log_mask
+#    Specifies which file system events shall be logged by the metadata servers.
+#
 class beegfs::client (
   String                         $user                     = $beegfs::user,
   String                         $group                    = $beegfs::group,
@@ -32,6 +35,7 @@ class beegfs::client (
   Boolean                        $remote_fsync             = true,
   Optional[Stdlib::AbsolutePath] $conn_auth_file           = $beegfs::conn_auth_file,
   Boolean                        $manage_service           = true,
+  Optional[String]               $sys_file_event_log_mask  = undef,
 ) inherits beegfs {
   anchor { 'beegfs::kernel_dev' : }
 
