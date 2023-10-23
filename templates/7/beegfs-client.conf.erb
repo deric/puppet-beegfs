@@ -361,6 +361,9 @@ sysACLsEnabled                = <%= @enable_acl %>
 # impact.
 # Example: sysFileEventLogMask = close,trunc,setattr,link-op
 # Default: none
+<% if @sys_file_event_log_mask -%>
+sysFileEventLogMask = <%= @sys_file_event_log_mask %>
+<% end -%>
 
 # [sysRenameEbusyAsXdev]
 # Changes the semantics of rename() to return an EXDEV error if a file could not
