@@ -336,6 +336,9 @@ tuneUsePerUserMsgQueues      = false
 #  4(create), 5(mkdir), 6(mknode), 7(create symlink), 8(rmdir), 9(unlink),
 #  10(create hardlink), 11(rename)
 # Default: <unset>
+<% if @sys_file_event_log_target -%>
+sysFileEventLogTarget = <%= @sys_file_event_log_target %>
+<% end -%>
 
 #
 # --- Section 4.6: [Tuning] ---
