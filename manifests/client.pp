@@ -22,6 +22,7 @@
 # @param autobuild
 # @param autobuild_args
 # @param tune_refresh_on_get_attr
+# @param tune_file_cache_type
 # @param enable_quota
 # @param enable_acl
 # @param enable_rdma
@@ -54,6 +55,7 @@ class beegfs::client (
   Boolean                        $autobuild                = true,
   String                         $autobuild_args           = '-j8',
   Boolean                        $tune_refresh_on_get_attr = false,
+  String                         $tune_file_cache_type     = 'buffered',
   Boolean                        $enable_quota             = $beegfs::enable_quota,
   Boolean                        $enable_acl               = $beegfs::enable_acl,
   Boolean                        $enable_rdma              = $beegfs::enable_rdma,
