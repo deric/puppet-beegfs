@@ -1,5 +1,16 @@
 # deric-beegfs Changelog
 
+## 2024-02-03 Release 0.8.0
+
+- Add optional `sys_file_event_log_mask` parameter  [#33](https://github.com/deric/puppet-beegfs/pull/33)
+- Add parameter for client tuneFileCacheType [#34](https://github.com/deric/puppet-beegfs/pull/34)
+- Switch debian apt to https, use appropriate gpg key since 7.2.5
+- Remove deprecated `has_key` function (removed in stdlib 9)
+- Fix types, remove lookup call
+
+[Full changes](https://github.com/deric/puppet-beegfs/compare/v0.7.2...v0.8.0)
+
+
 ## 2023-08-10 Release 0.7.2
 
 - Add override parameter for baseurl in repo/redhat [#28](https://github.com/deric/puppet-beegfs/pull/28)
