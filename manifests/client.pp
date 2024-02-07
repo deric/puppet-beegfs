@@ -63,8 +63,7 @@ class beegfs::client (
   Optional[Stdlib::AbsolutePath] $conn_auth_file           = $beegfs::conn_auth_file,
   Boolean                        $manage_service           = true,
   Optional[String]               $sys_file_event_log_mask  = undef,
-) {
-  contain beegfs::install
+) inherits beegfs {
 
   ensure_packages($kernel_packages, {
       'ensure' => $kernel_ensure,

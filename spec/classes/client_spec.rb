@@ -30,10 +30,7 @@ describe 'beegfs::client' do
     }
   end
 
-  let :pre_condition do
-    'include beegfs'
-  end
-
+  it { is_expected.to contain_class('beegfs::install') }
   it { is_expected.to contain_class('beegfs::client') }
 
   shared_examples 'debian_beegfs-client' do |os, codename, headers, major|

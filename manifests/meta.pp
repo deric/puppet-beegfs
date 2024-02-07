@@ -50,8 +50,7 @@ class beegfs::meta (
   Boolean                        $enable_rdma               = $beegfs::enable_rdma,
   Optional[Stdlib::AbsolutePath] $conn_auth_file            = $beegfs::conn_auth_file,
   Optional[String]               $sys_file_event_log_target = undef,
-) {
-  contain beegfs::install
+) inherits beegfs {
 
   package { 'beegfs-meta':
     ensure  => $package_ensure,

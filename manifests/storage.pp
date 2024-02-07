@@ -42,8 +42,7 @@ class beegfs::storage (
   Boolean                        $enable_quota         = $beegfs::enable_quota,
   Boolean                        $enable_rdma          = $beegfs::enable_rdma,
   Optional[Stdlib::AbsolutePath] $conn_auth_file       = $beegfs::conn_auth_file,
-) {
-  contain beegfs::install
+) inherits beegfs {
 
   $_release_major = beegfs::release_to_major($beegfs::release)
 

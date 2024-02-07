@@ -56,8 +56,7 @@ class beegfs::admon (
   Boolean                 $enable_quota             = $beegfs::enable_quota,
   Boolean                 $enable_acl               = $beegfs::enable_acl,
   Stdlib::AbsolutePath    $admon_db_file            = $beegfs::admon_db_file,
-) {
-  contain beegfs::install
+) inherits beegfs {
   $_release_major = beegfs::release_to_major($beegfs::release)
 
   package { 'beegfs-admon':

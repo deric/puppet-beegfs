@@ -29,10 +29,6 @@ describe 'beegfs::meta' do
     }
   end
 
-  let :pre_condition do
-    'include beegfs'
-  end
-
   it { is_expected.to contain_class('beegfs::meta') }
   it { is_expected.to contain_class('beegfs::install') }
 
