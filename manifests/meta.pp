@@ -51,7 +51,6 @@ class beegfs::meta (
   Optional[Stdlib::AbsolutePath] $conn_auth_file            = $beegfs::conn_auth_file,
   Optional[String]               $sys_file_event_log_target = undef,
 ) inherits beegfs {
-
   package { 'beegfs-meta':
     ensure  => $package_ensure,
     require => Class['beegfs::install'],
