@@ -2,16 +2,17 @@
 #
 # @param manage_repo
 # @param package_source
+#   Either `beegfs` or `beegfs-http` for unsecure transport
 # @param release
 # @param gpg_key_id
 # @param dist
 
 class beegfs::repo::debian (
-  Boolean          $manage_repo    = true,
-  Enum['beegfs']   $package_source = $beegfs::package_source,
-  Beegfs::Release  $release        = $beegfs::repo::release,
-  Optional[String] $gpg_key_id     = undef,
-  Optional[String] $dist           = undef,
+  Boolean                $manage_repo    = true,
+  Beegfs::PackageSource  $package_source = $beegfs::package_source,
+  Beegfs::Release        $release        = $beegfs::repo::release,
+  Optional[String]       $gpg_key_id     = undef,
+  Optional[String]       $dist           = undef,
 ) {
   include apt
 
@@ -90,6 +91,22 @@ class beegfs::repo::debian (
       'beegfs': {
         apt::source { 'beegfs':
           location     => "https://www.beegfs.io/release/beegfs_${_release}",
+          repos        => 'non-free',
+          architecture => 'amd64',
+          release      => $_os_release,
+          key          => {
+            'id'     => $_gpg_key_id,
+            'source' => "https://www.beegfs.com/release/beegfs_${_release}/gpg/${_gpg_key}",
+          },
+          include      => {
+            'src' => false,
+            'deb' => true,
+          },
+        }
+      }
+      'beegfs-http': {
+        apt::source { 'beegfs':
+          location     => "http://www.beegfs.io/release/beegfs_${_release}",
           repos        => 'non-free',
           architecture => 'amd64',
           release      => $_os_release,
