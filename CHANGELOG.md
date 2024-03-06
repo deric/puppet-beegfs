@@ -4,7 +4,7 @@
 
 - Support fetching packages over http via `package_source` param [#36](https://github.com/deric/puppet-beegfs/pull/36)
 
-[Full changes](https://github.com/deric/puppet-beegfs/compare/v0.8.0...v0.8.1)
+[Full changes](https://github.com/deric/puppet-beegfs/compare/v0.8.1...v0.8.2)
 
 
 ## 2024-02-07 Release 0.8.1
