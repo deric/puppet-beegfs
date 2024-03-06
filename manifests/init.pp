@@ -1,5 +1,4 @@
-# Class: beegfs
-# ===========================
+# @summary Manages beegfs installations
 #
 # @param manage_repo
 # @param mgmtd_host
