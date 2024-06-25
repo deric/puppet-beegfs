@@ -46,7 +46,7 @@ class beegfs::install (
       recurse => true,
   })
 
-  ensure_packages(['beegfs-utils'], {
+  stdlib::ensure_packages(['beegfs-utils'], {
       'ensure'  => $package_ensure,
       'require' => Class['beegfs::repo']
   })

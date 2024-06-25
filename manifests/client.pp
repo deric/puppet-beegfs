@@ -64,7 +64,7 @@ class beegfs::client (
   Boolean                        $manage_service           = true,
   Optional[String]               $sys_file_event_log_mask  = undef,
 ) inherits beegfs {
-  ensure_packages($kernel_packages, {
+  stdlib::ensure_packages($kernel_packages, {
       'ensure' => $kernel_ensure,
     }
   )
