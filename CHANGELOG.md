@@ -4,7 +4,7 @@
 
 - **BC** `puppetlabs/stdlib` >= 9.0.0 is required due to usage of `stdlib::ensure_package` function
 - `puppetlabs/apt` >= 9.0.0 needs [this patch](https://github.com/puppetlabs/puppetlabs-apt/pull/1050/commits/ea68ea521b8ea0ef460ee639759e76e22a620a7e) to work with ruby 3.0
-- Fix incorrected `puppetlabs/concat` dependency requirement - at least `4.0.0` is needed
+- Fix incorrected `puppetlabs/concat` dependency requirement - at least `4.1.0` is needed (removed deprecated `is_string()`)
 - Puppet 8 compatible
 
 [Full changes](https://github.com/deric/puppet-beegfs/compare/v0.8.2...v1.0.0)

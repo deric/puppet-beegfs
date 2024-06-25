@@ -7,7 +7,7 @@ fixtures:
       # ref: 9.0.0
     concat:
       repo: "puppetlabs/concat"
-      # ref: 4.0.0
+      # ref: 4.1.0
     apt:
       repo: "puppetlabs/apt"
       # ref: 9.0.0
