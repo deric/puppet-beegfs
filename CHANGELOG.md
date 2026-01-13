@@ -1,5 +1,12 @@
 # deric-beegfs Changelog
 
+
+
+## 2026-01-13 Release 1.1.0
+
+- allow `puppetlabs/apt` 10.x and 11.x
+- Add the sysNoEnterpriseFeatureMsg client option (#37)
+
 ## 2024-06-25 Release 1.0.0
 
 - **BC** `puppetlabs/stdlib` >= 9.0.0 is required due to usage of `stdlib::ensure_package` function
