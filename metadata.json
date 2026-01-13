@@ -1,6 +1,6 @@
 {
   "name": "deric-beegfs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "deric",
   "summary": "Manage BeeGFS parallel filesystem installations",
   "license": "Apache-2.0",
@@ -14,7 +14,7 @@
     },
     {
       "name": "puppetlabs/apt",
-      "version_requirement": ">= 9.0.0 < 10.0.0"
+      "version_requirement": ">= 9.0.0 < 12.0.0"
     },
     {
       "name": "puppetlabs/concat",
@@ -29,9 +29,9 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9",
         "10",
-        "11"
+        "11",
+        "12"
       ]
     },
     {
@@ -45,7 +45,6 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7",
         "8",
         "9"
       ]
@@ -53,7 +52,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7",
         "8",
         "9"
       ]
