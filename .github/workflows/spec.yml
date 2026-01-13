@@ -42,7 +42,7 @@ jobs:
         puppet:
           - "~> 8.0"
           - "~> 7.0"
-      name: "Ruby ${{ matrix.ruby }} - Puppet ${{ matrix.puppet }}"
+    name: "Ruby ${{ matrix.ruby }} - Puppet ${{ matrix.puppet }}"
     env:
       PUPPET_VERSION: ${{ matrix.puppet }}
     steps:
