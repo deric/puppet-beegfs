@@ -62,9 +62,10 @@ jobs:
       fail-fast: false
       matrix:
         beaker:
-          - debian11-64a
-          - debian12-64a # voxpupuli/beaker-hostgenerator doesn't support Debian 12 yet
-          - ubuntu2204-64a
+          # apt repos no longer available
+          # - debian11-64a
+          # - debian12-64a
+          # - ubuntu2204-64a
           - centos9-64a
           - rocky9-64a
     name: Acceptance / Image ${{ matrix.beaker }}
