@@ -35,18 +35,20 @@ class beegfs::install (
   }
 
   group { 'beegfs':
-    ensure  => present,
+    ensure => present,
   }
 
   # make sure log directory exists
-  ensure_resource('file', $log_dir, {
-      'ensure' => directory,
+  ensure_resource('file', $log_dir,
+    {
+      ensure  => directory,
       owner   => $user,
       group   => $group,
       recurse => true,
   })
 
-  stdlib::ensure_packages(['beegfs-utils'], {
+  stdlib::ensure_packages(['beegfs-utils'],
+    {
       'ensure'  => $package_ensure,
       'require' => Class['beegfs::repo']
   })
