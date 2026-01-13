@@ -39,15 +39,10 @@ jobs:
         ruby:
           - "3.1"
           - "3.0"
-          - "2.7"
         puppet:
           - "~> 8.0"
           - "~> 7.0"
-        exclude:
-          - ruby: "2.7"
-            puppet: "~> 8.0"
-
-    name: "Ruby ${{ matrix.ruby }} - Puppet ${{ matrix.puppet }}"
+      name: "Ruby ${{ matrix.ruby }} - Puppet ${{ matrix.puppet }}"
     env:
       PUPPET_VERSION: ${{ matrix.puppet }}
     steps:
@@ -67,9 +62,8 @@ jobs:
       fail-fast: false
       matrix:
         beaker:
-          - debian10-64a
           - debian11-64a
-          # - debian12-64a # voxpupuli/beaker-hostgenerator doesn't support Debian 12 yet
+          - debian12-64a # voxpupuli/beaker-hostgenerator doesn't support Debian 12 yet
           - ubuntu2204-64a
           - centos9-64a
           - rocky9-64a
