@@ -10,5 +10,7 @@ fixtures:
       # ref: 4.1.0
     apt:
       repo: "puppetlabs/apt"
-      # ref: 9.0.0
-    yumrepo_core: "puppetlabs/yumrepo_core"
+      ref: 10.0.1
+    yumrepo_core:
+      repo: "puppetlabs/yumrepo_core"
+      ref: 2.1.0
