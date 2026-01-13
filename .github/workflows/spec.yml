@@ -66,7 +66,7 @@ jobs:
           # - debian11-64a
           # - debian12-64a
           # - ubuntu2204-64a
-          - centos9-64a
+          - stream9-64a
           - rocky9-64a
     name: Acceptance / Image ${{ matrix.beaker }}
     steps:
