@@ -8,7 +8,7 @@ describe 'beegfs meta' do
     it 'works idempotently with no errors' do
       pp = <<-PUPPET
       class { 'beegfs':
-        release           => '8.2.0',
+        release           => '7.4.0',
         allow_new_servers => true,
       }
       class { 'beegfs::mgmtd':
